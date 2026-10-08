@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dra. Laíse Cândido · Reabilitação oral e estética dental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Cores predominantes — Marfim / Aveia / Areia */
+      --cream:        #F0E5D8;   /* Marfim — base neutra */
+      --cream-dark:   #DECCB6;   /* Aveia — seções alternadas */
+      --areia:        #B8997A;   /* Areia — elemento de apoio */
+
+      /* Destaques */
+      --accent-wine:  #4D1521;   /* vinho — CTAs e destaques quentes */
+      --accent-teal:  #253F52;   /* petróleo — seções escuras e nav */
+
+      /* Tons intermediários */
+      --teal-mid:     #3A5A72;
+      --teal-light:   #5A7A92;
+
+      /* Tipografia */
+      --text:         #1C1814;
+      --text-muted:   #7A6E66;
+      --white:        #FDF8F3;
+      --border:       rgba(37,63,82,.13);
+
+      --f-serif: 'Fraunces', Georgia, serif;
+      --f-sans:  'DM Sans', system-ui, sans-serif;
+
+      --ease-out: cubic-bezier(.16,1,.3,1);
+      --ease-in-out: cubic-bezier(.76,0,.24,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--f-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--f-sans); border: none; background: none; }
+
+    /* ─── Typography helpers ─── */
+    .serif { font-family: var(--f-serif); }
+
+    h1, h2, h3, h4 { font-family: var(--f-serif); font-weight: 400; line-height: 1.1; }
+
+    .eyebrow {
+      font-family: var(--f-sans);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .eyebrow--light { color: rgba(255,255,255,.55); }
+
+    /* ─── Scroll reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: 1rem 2rem;
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      border-radius: 2px;
+      transition: all .3s var(--ease-out);
+    }
+
+    .btn--primary {
+      background: var(--accent-wine);
+      color: var(--white);
+      border-radius: 8px;
+    }
+    .btn--primary:hover {
+      background: #6B1E2E;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(77,21,33,.3);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--accent-teal);
+      border: 1.5px solid var(--accent-teal);
+      border-radius: 8px;
+    }
+    .btn--outline:hover {
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .btn--light {
+      background: var(--white);
+      color: var(--accent-teal);
+      border-radius: 8px;
+    }
+    .btn--light:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ─── Nav ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+    }
+
+    .nav.scrolled {
+      background: rgba(240,229,216,.94);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .nav__brand {
+      display: flex;
+      flex-direction: column;
+      gap: .1rem;
+    }
+
+    .nav__name {
+      font-family: var(--f-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      color: var(--text);
+    }
+
+    .nav__sub {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: .82rem;
+      letter-spacing: .03em;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: var(--text); }
+
+    .nav__cta { margin-left: 1rem; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 4rem 6rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent-wine);
+    }
+
+    .hero__title {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--accent-teal);
+    }
+
+    .hero__subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 38ch;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero__note {
+      margin-top: 1rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    .hero__id {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero__right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__photo-wrap {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero__photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--cream) 0%, transparent 20%);
+    }
+
+    .hero__ornament {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      font-family: var(--f-serif);
+      font-size: .8rem;
+      font-style: italic;
+      color: rgba(255,255,255,.7);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: .15em;
+    }
+
+    /* ─── Section layouts ─── */
+    .section {
+      padding: 7rem 3rem;
+    }
+
+    .section--green {
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .section--green-mid {
+      background: var(--teal-mid);
+      color: var(--white);
+    }
+
+    .section--dark {
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .section--cream-dark {
+      background: var(--cream-dark);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-header--center {
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-top: .75rem;
+    }
+
+    .section-title--large {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    /* ─── DORES ─── */
+    .dores {
+      padding: 7rem 3rem;
+    }
+
+    .dores__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .dores__card {
+      background: var(--cream);
+      padding: 2.5rem;
+      position: relative;
+      transition: background .3s;
+    }
+
+    .dores__card:hover {
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .dores__card:hover .dores__card-title,
+    .dores__card:hover .dores__card-text { color: var(--white); }
+
+    .dores__card:hover .dores__number { color: rgba(255,255,255,.15); }
+
+    .dores__number {
+      font-family: var(--f-serif);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--cream-dark);
+      line-height: 1;
+      margin-bottom: 1rem;
+      transition: color .3s;
+    }
+
+    .dores__card-title {
+      font-family: var(--f-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: .75rem;
+      color: var(--text);
+      transition: color .3s;
+    }
+
+    .dores__card-text {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      transition: color .3s;
+    }
+
+    .dores__closing {
+      max-width: 65ch;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .dores__closing strong { color: var(--text); font-weight: 500; }
+
+    /* ─── LENTES ─── */
+    .lentes {
+      padding: 7rem 3rem;
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .lentes__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .lentes__content .section-title { color: var(--white); }
+
+    .lentes__text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,.75);
+      margin: 1.5rem 0;
+    }
+
+    .lentes__highlight {
+      border-left: 2px solid var(--areia);
+      padding: 1.5rem 1.5rem;
+      background: rgba(255,255,255,.06);
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+      font-size: .95rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.7;
+    }
+
+    .lentes__highlight strong {
+      display: block;
+      font-family: var(--f-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+
+    .lentes__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.12);
+      margin-top: 2.5rem;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .lentes__card {
+      background: var(--accent-teal);
+      padding: 1.5rem;
+    }
+
+    .lentes__card-label {
+      font-family: var(--f-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--areia);
+      margin-bottom: .5rem;
+    }
+
+    .lentes__card-text {
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+    }
+
+    .lentes__image {
+      position: relative;
+    }
+
+    .lentes__image img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .lentes__image-label {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      background: rgba(36,50,38,.8);
+      padding: .4rem .8rem;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── REABILITAÇÃO ─── */
+    .reab {
+      padding: 7rem 3rem;
+      background: var(--cream);
+    }
+
+    .reab__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .reab__image img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .reab__text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .reab__cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .reab__card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 10px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+
+    .reab__card:hover {
+      border-color: var(--teal-light);
+      box-shadow: 0 4px 16px rgba(37,63,82,.1);
+    }
+
+    .reab__card-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reab__card-icon svg { width: 16px; height: 16px; color: var(--white); }
+
+    .reab__card-title {
+      font-family: var(--f-serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: .3rem;
+      color: var(--text);
+    }
+
+    .reab__card-text {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── PROCESSO ─── */
+    .processo {
+      padding: 7rem 3rem;
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .processo__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .processo__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .processo__header-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.7;
+      max-width: 42ch;
+    }
+
+    .processo__steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .processo__step {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.12);
+      position: relative;
+    }
+
+    .processo__step:last-child { border-right: none; }
+
+    .processo__step-num {
+      font-family: var(--f-serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.1);
+      line-height: 1;
+      margin-bottom: .75rem;
+    }
+
+    .processo__step-title {
+      font-family: var(--f-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--areia);
+      margin-bottom: .75rem;
+    }
+
+    .processo__step-text {
+      font-size: .875rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.65;
+    }
+
+    .processo__medo {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .processo__medo-icon {
+      font-family: var(--f-serif);
+      font-size: 3.5rem;
+      font-style: italic;
+      color: var(--areia);
+      line-height: 1;
+    }
+
+    .processo__medo-title {
+      font-family: var(--f-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+
+    .processo__medo-text {
+      font-size: .9rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+    }
+
+    .processo__cta {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    /* ─── DEPOIMENTOS ─── */
+    .depoimentos {
+      padding: 7rem 3rem;
+      background: var(--cream-dark);
+    }
+
+    .depoimentos__inner { max-width: 1200px; margin: 0 auto; }
+
+    .depoimentos__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .depoimentos__rating {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+
+    .depoimentos__stars {
+      color: #D4A017;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+    }
+
+    .depoimentos__rating-num {
+      font-family: var(--f-serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .depoimentos__carousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .depoimentos__track {
+      display: flex;
+      gap: 1.5rem;
+      transition: transform .5s var(--ease-in-out);
+    }
+
+    .depoimentos__card {
+      background: var(--white);
+      padding: 2rem;
+      min-width: calc(33.333% - 1rem);
+      flex-shrink: 0;
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .depoimentos__quote {
+      font-family: var(--f-serif);
+      font-size: 3.5rem;
+      color: var(--teal-light);
+      line-height: .8;
+      margin-bottom: .75rem;
+    }
+
+    .depoimentos__text {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .depoimentos__author {
+      font-family: var(--f-serif);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .depoimentos__source {
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: .2rem;
+    }
+
+    .depoimentos__nav {
+      display: flex;
+      gap: .75rem;
+      margin-top: 2rem;
+    }
+
+    .depoimentos__btn {
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      border-radius: 8px;
+    }
+
+    .depoimentos__btn:hover {
+      background: var(--accent-teal);
+      border-color: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .depoimentos__btn svg { width: 18px; height: 18px; }
+
+    /* ─── RESULTADOS ─── */
+    .resultados {
+      padding: 7rem 3rem;
+      background: var(--cream);
+    }
+
+    .resultados__inner { max-width: 1200px; margin: 0 auto; }
+
+    .resultados__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .resultados__item {
+      position: relative;
+      overflow: hidden;
+      background: var(--text);
+      border-radius: 10px;
+    }
+
+    .resultados__item img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .6s var(--ease-out);
+    }
+
+    .resultados__item:hover img { transform: scale(1.03); }
+
+    .resultados__item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
+      font-size: .7rem;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.8);
+      text-transform: uppercase;
+    }
+
+    .resultados__disclaimer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── SOBRE ─── */
+    .sobre {
+      padding: 7rem 3rem;
+      background: var(--accent-teal);
+      color: var(--white);
+    }
+
+    .sobre__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .sobre__image {
+      position: relative;
+    }
+
+    .sobre__image img {
+      width: 100%;
+      height: 640px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .sobre__image-caption {
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      padding: 1rem 1.5rem;
+      background: rgba(184,153,122,.9);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      font-weight: 500;
+    }
+
+    .sobre__content .section-title { color: var(--white); margin-bottom: .5rem; }
+
+    .sobre__credential {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--areia);
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre__bio {
+      font-size: .975rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .sobre__quote {
+      border-left: 2px solid var(--areia);
+      padding: 1.5rem 2rem;
+      background: rgba(255,255,255,.04);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .sobre__quote p {
+      font-family: var(--f-serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.55;
+      margin-bottom: .75rem;
+    }
+
+    .sobre__quote cite {
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      font-style: normal;
+    }
+
+    .sobre__instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.65);
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      padding-bottom: .25rem;
+      transition: color .2s, border-color .2s;
+    }
+
+    .sobre__instagram:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ─── LOCALIZAÇÃO ─── */
+    .local {
+      padding: 7rem 3rem;
+      background: var(--cream-dark);
+    }
+
+    .local__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .local__content { padding-top: 1rem; }
+
+    .local__address {
+      margin: 2rem 0;
+      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .local__address-main {
+      font-family: var(--f-serif);
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: .75rem;
+      line-height: 1.4;
+    }
+
+    .local__address-detail {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .local__hours {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      font-size: .875rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .local__hours strong { color: var(--text); }
+
+    .local__parking {
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-top: .75rem;
+    }
+
+    .local__map {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      height: 440px;
+      border-radius: 10px;
+    }
+
+    .local__map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ─── FAQ ─── */
+    .faq {
+      padding: 7rem 3rem;
+      background: var(--cream);
+    }
+
+    .faq__inner {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .faq__list { margin-top: 3rem; }
+
+    .faq__item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq__item:first-child { border-top: 1px solid var(--border); }
+
+    .faq__question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      font-family: var(--f-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: color .2s;
+    }
+
+    .faq__question:hover { color: var(--accent-wine); }
+
+    .faq__question.active { color: var(--accent-wine); }
+
+    .faq__icon {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform .3s;
+    }
+
+    .faq__question.active .faq__icon { transform: rotate(45deg); }
+
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s var(--ease-out), padding .4s;
+    }
+
+    .faq__answer.open { max-height: 300px; }
+
+    .faq__answer-inner {
+      padding-bottom: 1.5rem;
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta {
+      padding: 7rem 3rem;
+      background:
+        linear-gradient(to left, var(--accent-teal) 38%, rgba(37,63,82,.55) 65%, transparent 100%),
+        url('Fotos Laíse/Captura de Tela 2026-10-08 às 00.21.08.png') left bottom / auto 82% no-repeat,
+        var(--accent-teal);
+      color: var(--white);
+    }
+
+    .cta__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .cta__title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      color: var(--white);
+      margin: .75rem 0 1.25rem;
+    }
+
+    .cta__text {
+      font-size: 1rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+    }
+
+    .cta__form {
+      background: var(--cream);
+      padding: 2.5rem;
+      border-radius: 12px;
+    }
+
+    .cta__form-title {
+      font-family: var(--f-serif);
+      font-size: 1.35rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .form__group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form__label {
+      display: block;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: .5rem;
+    }
+
+    .form__input {
+      width: 100%;
+      padding: .875rem 1rem;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: var(--f-sans);
+      font-size: .9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s;
+      border-radius: 8px;
+    }
+
+    .form__input:focus { border-color: var(--accent-teal); }
+
+    .form__checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .form__checkbox input { margin-top: .2rem; accent-color: var(--green); }
+
+    .form__checkbox a { color: var(--green); text-decoration: underline; }
+
+    .form__submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent-wine);
+      color: var(--white);
+      font-family: var(--f-sans);
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      border-radius: 8px;
+    }
+
+    .form__submit:hover {
+      background: #6B1E2E;
+      transform: translateY(-2px);
+    }
+
+    .form__note {
+      margin-top: .75rem;
+      text-align: center;
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── COOKIES ─── */
+    .cookies {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      max-width: 520px;
+      background: var(--text);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      z-index: 200;
+      display: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25);
+    }
+
+    .cookies.show { display: block; }
+
+    .cookies__text {
+      font-size: .85rem;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .cookies__text a { color: var(--gold); text-decoration: underline; }
+
+    .cookies__actions { display: flex; gap: .75rem; }
+
+    .cookies__btn {
+      padding: .5rem 1.25rem;
+      font-size: .82rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .cookies__btn--accept {
+      background: var(--gold);
+      color: var(--text);
+      border: 1.5px solid var(--gold);
+    }
+
+    .cookies__btn--refuse {
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      border: 1.5px solid rgba(255,255,255,.2);
+    }
+
+    .cookies__btn:hover { opacity: .85; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 4rem 3rem 3rem;
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer__brand-name {
+      font-family: var(--f-serif);
+      font-size: 1.35rem;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+
+    .footer__brand-sub {
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer__contact {
+      font-size: .875rem;
+      color: rgba(255,255,255,.6);
+      line-height: 2;
+    }
+
+    .footer__contact a { color: rgba(255,255,255,.6); transition: color .2s; }
+    .footer__contact a:hover { color: var(--gold); }
+
+    .footer__col-title {
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer__col-text {
+      font-size: .85rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.9;
+    }
+
+    .footer__bottom {
+      padding-top: 2rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer__legal {
+      font-size: .72rem;
+      color: rgba(255,255,255,.3);
+      line-height: 1.8;
+    }
+
+    .footer__legal a { color: rgba(255,255,255,.4); text-decoration: underline; }
+
+    .footer__copy {
+      font-size: .72rem;
+      color: rgba(255,255,255,.25);
+      text-align: right;
+    }
+
+    /* ─── Scroll to top ─── */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--accent-wine);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 99;
+      border-radius: 8px;
+    }
+
+    .scroll-top.show { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__right { height: 60vw; }
+      .hero__photo-overlay { background: linear-gradient(to bottom, var(--cream) 0%, transparent 15%, transparent 70%, var(--cream) 100%); }
+      .hero__left { padding: 8rem 2rem 4rem; }
+
+      .lentes__inner,
+      .reab__inner,
+      .sobre__inner,
+      .cta__inner,
+      .local__inner,
+      .processo__header { grid-template-columns: 1fr; gap: 3rem; }
+
+      .processo__steps { grid-template-columns: repeat(2, 1fr); }
+      .processo__step:nth-child(2) { border-right: none; }
+      .processo__step:nth-child(3) { border-top: 1px solid rgba(255,255,255,.12); }
+      .processo__step:nth-child(4) { border-top: 1px solid rgba(255,255,255,.12); }
+
+      .resultados__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.5rem; }
+      .nav__links { display: none; }
+      .section { padding: 5rem 1.5rem; }
+      .dores { padding: 5rem 1.5rem; }
+      .lentes, .reab, .processo, .sobre, .local, .faq, .cta, .depoimentos, .resultados { padding: 5rem 1.5rem; }
+      .footer { padding: 3rem 1.5rem; }
+      .dores__grid { grid-template-columns: 1fr; }
+      .lentes__cards { grid-template-columns: 1fr; }
+      .processo__steps { grid-template-columns: 1fr; }
+      .processo__step { border-right: none; border-top: 1px solid rgba(255,255,255,.12); }
+      .processo__step:first-child { border-top: none; }
+      .resultados__grid { grid-template-columns: 1fr; }
+      .depoimentos__card { min-width: 85vw; }
+      .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer__bottom { flex-direction: column; }
+      .footer__copy { text-align: left; }
+      .processo__medo { grid-template-columns: 1fr; gap: 1rem; }
+      .lentes__image img, .reab__image img, .sobre__image img { height: auto; max-height: 400px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav">
+    <div class="nav__brand">
+      <span class="nav__name">Dra. Laíse Cândido</span>
+      <span class="nav__sub">CRO-SC 16246</span>
+    </div>
+    <ul class="nav__links">
+      <li><a href="#lentes">Lentes</a></li>
+      <li><a href="#reabilitacao">Reabilitação</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="#contato" class="btn btn--primary nav__cta">Agendar avaliação</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero__left">
+      <div class="hero__eyebrow reveal">
+        <span class="eyebrow">Reabilitação oral e estética dental</span>
+      </div>
+
+      <h1 class="hero__title reveal reveal-delay-1">
+        Natural no resultado.<br>
+        <em>Natural no cuidado</em><br>
+        com os seus dentes.
+      </h1>
+
+      <p class="hero__subtitle reveal reveal-delay-2">
+        Lentes de resina e de porcelana e reabilitação oral planejadas sob medida, para um sorriso harmônico, com a sua cara e preservando ao máximo os seus dentes.
+      </p>
+
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="#contato" class="btn btn--primary">
+          Quero agendar minha avaliação
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="hero__note reveal reveal-delay-3">Preencha o formulário e continue a conversa pelo WhatsApp.</p>
+
+      <div class="hero__id reveal reveal-delay-4">
+        Dra. Laíse Cândido · CRO-SC 16246 · Florianópolis, SC
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <div class="hero__photo-wrap">
+        <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.19.40.png" alt="Dra. Laíse Cândido" loading="eager">
+      </div>
+      <div class="hero__photo-overlay"></div>
+      <span class="hero__ornament">Espaço Cora · Florianópolis</span>
+    </div>
+  </section>
+
+  <!-- ── DORES ── -->
+  <section class="dores" id="dores">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Você se reconhece?</span>
+        <h2 class="section-title">Talvez seja isso que incomoda<br><em class="serif" style="font-style:italic">você no seu sorriso.</em></h2>
+      </div>
+
+      <div class="dores__grid">
+        <div class="dores__card reveal">
+          <div class="dores__number">01</div>
+          <h3 class="dores__card-title">Dentes pequenos para o seu sorriso</h3>
+          <p class="dores__card-text">Eles deixam a aparência mais jovem do que você é e não combinam com o momento que você vive.</p>
+        </div>
+        <div class="dores__card reveal reveal-delay-1">
+          <div class="dores__number">02</div>
+          <h3 class="dores__card-title">Dentes desgastados ou escurecidos</h3>
+          <p class="dores__card-text">Com o tempo, o desgaste e a cor envelhecem o sorriso, e ele deixa de parecer com você.</p>
+        </div>
+        <div class="dores__card reveal reveal-delay-2">
+          <div class="dores__number">03</div>
+          <h3 class="dores__card-title">Restaurações antigas e manchadas</h3>
+          <p class="dores__card-text">Opacas ou com cor diferente dos outros dentes, elas aparecem em cada foto.</p>
+        </div>
+        <div class="dores__card reveal reveal-delay-3">
+          <div class="dores__number">04</div>
+          <h3 class="dores__card-title">Vontade de mudar, medo de exagerar</h3>
+          <p class="dores__card-text">Você quer um sorriso mais bonito, mas não quer dentes com cara de artificial.</p>
+        </div>
+      </div>
+
+      <p class="dores__closing reveal">
+        O sorriso interfere na segurança com que você se apresenta no trabalho, nas relações e nas fotos com quem você ama. <strong>Cuidar dele também é cuidar de como você se sente.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── LENTES ── -->
+  <section class="lentes" id="lentes">
+    <div class="lentes__inner">
+      <div class="lentes__content">
+        <span class="eyebrow eyebrow--light reveal">Estética dental</span>
+        <h2 class="section-title reveal reveal-delay-1" style="color:var(--white)">Lentes de resina<br>e de porcelana</h2>
+
+        <p class="lentes__text reveal reveal-delay-2">
+          As lentes são lâminas finas aplicadas na parte da frente dos dentes para ajustar cor, formato e tamanho. Elas podem ser feitas em resina ou em porcelana, e as duas são boas opções quando bem indicadas.
+        </p>
+
+        <div class="lentes__highlight reveal reveal-delay-2">
+          <strong>Seu plano é feito sob medida</strong>
+          Na avaliação, você define junto o material, em quais dentes as lentes vão entrar e se vale a pena clarear antes. Tudo pensado para um resultado harmônico, natural e que preserve ao máximo os seus dentes.
+        </div>
+
+        <div class="lentes__cards reveal reveal-delay-3">
+          <div class="lentes__card">
+            <div class="lentes__card-label">Natural</div>
+            <p class="lentes__card-text">Formato, cor e tamanho pensados para o seu rosto, para que o sorriso tenha a sua cara.</p>
+          </div>
+          <div class="lentes__card">
+            <div class="lentes__card-label">Conservador</div>
+            <p class="lentes__card-text">O desgaste do dente é o mínimo necessário, e às vezes nem é preciso.</p>
+          </div>
+          <div class="lentes__card">
+            <div class="lentes__card-label">Planejado</div>
+            <p class="lentes__card-text">Antes de começar, você vê o planejamento digital do seu sorriso.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lentes__image reveal reveal-delay-2">
+        <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-05.jpg" alt="Resultado de lentes dentais" loading="lazy">
+        <div class="lentes__image-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REABILITAÇÃO ── -->
+  <section class="reab" id="reabilitacao">
+    <div class="reab__inner">
+      <div class="reab__image reveal">
+        <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.20.27.png" alt="Dra. Laíse no consultório" loading="lazy">
+      </div>
+
+      <div class="reab__content">
+        <span class="eyebrow reveal">Reabilitação oral</span>
+        <h2 class="section-title reveal reveal-delay-1">Quando o sorriso precisa<br><em class="serif" style="font-style:italic">de mais do que lentes.</em></h2>
+
+        <p class="reab__text reveal reveal-delay-2">
+          Reabilitar é devolver ao sorriso o que ele perdeu com o tempo: a estética, a função e a saúde. E, junto com elas, a segurança de sorrir.<br><br>
+          Em alguns casos, isso envolve outras etapas antes das lentes ou das coroas — como tratamento de canal, implante, ortodontia, cuidado com a gengiva ou harmonização orofacial. O tratamento é planejado como um todo, com acompanhamento em cada etapa, para que tudo se encaixe no resultado final.
+        </p>
+
+        <div class="reab__cards reveal reveal-delay-3">
+          <div class="reab__card">
+            <div class="reab__card-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z"/></svg>
+            </div>
+            <div>
+              <div class="reab__card-title">Estética, função e saúde juntas</div>
+              <p class="reab__card-text">Um sorriso bonito, que funciona bem no dia a dia e se mantém saudável.</p>
+            </div>
+          </div>
+          <div class="reab__card">
+            <div class="reab__card-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+            </div>
+            <div>
+              <div class="reab__card-title">Seus dentes em primeiro lugar</div>
+              <p class="reab__card-text">Sempre que possível, o tratamento recupera os seus dentes naturais antes de substituí-los.</p>
+            </div>
+          </div>
+          <div class="reab__card">
+            <div class="reab__card-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M2 4h12M2 12h8"/></svg>
+            </div>
+            <div>
+              <div class="reab__card-title">Um só planejamento, do início ao fim</div>
+              <p class="reab__card-text">O seu caso é acompanhado por inteiro, da avaliação à última etapa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSO ── -->
+  <section class="processo" id="processo">
+    <div class="processo__inner">
+      <div class="processo__header">
+        <div>
+          <span class="eyebrow eyebrow--light reveal">Como funciona</span>
+          <h2 class="section-title section-title--large reveal reveal-delay-1" style="color:var(--white)">Como é<br>o processo</h2>
+        </div>
+        <p class="processo__header-sub reveal reveal-delay-2">
+          Cada tratamento começa por uma conversa e segue no seu ritmo. Você entende cada passo e decide junto.
+        </p>
+      </div>
+
+      <div class="processo__steps">
+        <div class="processo__step reveal">
+          <div class="processo__step-num">01</div>
+          <div class="processo__step-title">Uma conversa primeiro</div>
+          <p class="processo__step-text">Antes de qualquer proposta, a primeira consulta é para ouvir você: o que deseja mudar, o que incomoda e a sua história.</p>
+        </div>
+        <div class="processo__step reveal reveal-delay-1">
+          <div class="processo__step-num">02</div>
+          <div class="processo__step-title">Avaliação com calma</div>
+          <p class="processo__step-text">Com fotos, escaneamento digital e exames, a saúde dos seus dentes é avaliada, e você entende o que foi encontrado e por quê.</p>
+        </div>
+        <div class="processo__step reveal reveal-delay-2">
+          <div class="processo__step-num">03</div>
+          <div class="processo__step-title">Você vê o plano e decide junto</div>
+          <p class="processo__step-text">No planejamento digital, você vê seus dentes no computador e conhece os prós e contras de cada caminho. A conversa é sincera.</p>
+        </div>
+        <div class="processo__step reveal reveal-delay-3">
+          <div class="processo__step-num">04</div>
+          <div class="processo__step-title">Tratamento no seu tempo</div>
+          <p class="processo__step-text">As etapas são organizadas de acordo com a sua rotina. Se você tem uma data importante pela frente, conte na avaliação.</p>
+        </div>
+      </div>
+
+      <div class="processo__medo reveal">
+        <div class="processo__medo-icon">♡</div>
+        <div>
+          <div class="processo__medo-title">Para quem tem medo de dentista</div>
+          <p class="processo__medo-text">Se você vem adiando o cuidado com os dentes por medo, saiba que isso é levado a sério aqui. Você é recebido sem julgamentos, tudo é conversado antes de acontecer, e suas ansiedades são respeitadas. Para quem sente muita ansiedade, existe também a possibilidade de sedação, conversada caso a caso.</p>
+        </div>
+      </div>
+
+      <div class="processo__cta reveal">
+        <a href="#contato" class="btn btn--light">
+          Quero agendar minha avaliação
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEPOIMENTOS ── -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="depoimentos__inner">
+      <div class="depoimentos__header">
+        <div>
+          <span class="eyebrow reveal">O que dizem os pacientes</span>
+          <h2 class="section-title reveal reveal-delay-1">Odontologia com afeto,<br><em class="serif" style="font-style:italic">nas palavras de quem é atendido.</em></h2>
+        </div>
+        <div class="depoimentos__rating reveal">
+          <div>
+            <div class="depoimentos__stars">★★★★★</div>
+          </div>
+          <div>
+            <div class="depoimentos__rating-num">5,0</div>
+            <div style="font-size:.75rem;color:var(--text-muted)">no Google · 79 avaliações</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="depoimentos__carousel">
+        <div class="depoimentos__track" id="carousel-track">
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Laíse é uma dentista que tem muita técnica e primor em seu trabalho, vive estudando e se atualizando, mas se destaca ainda mais pelo acolhimento e afeto com que trata os pacientes! Respeita os horários, tem uma escuta excelente e não vende tratamentos estéticos que não façam sentido. Sou paciente há 6 anos e recomendo muito o trabalho cuidadoso e atencioso dela!</p>
+            <div class="depoimentos__author">Isadora C.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Já sou paciente da Dra Laise a alguns anos e o trabalho dela é impecável! Sempre me deixa a vontade, mão super leve e realmente aconselha o melhor para o paciente. Indico de olhos fechados!</p>
+            <div class="depoimentos__author">Ana Beatriz F.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Laíse é muito acolhedora, busca entender o contexto de cada problema para sugerir — sempre com muitas informações — as melhores soluções, com carinho, habilidade e calma. Até então nem achava que esse atendimento era possível, mas com ela é.</p>
+            <div class="depoimentos__author">Mirelle C.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Tenho medo de ir no dentista e por isso ficava anos sem ir a um consultório. Com a Dra. Laíse me senti tão bem que a frequência aumentou muito!</p>
+            <div class="depoimentos__author">Yasmine F.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">A Dra. Laíse é muito atenciosa no atendimento, sempre me explicando todas etapas do processo, as causas dos problemas e as melhores soluções possíveis. Me sinto super à vontade e tratada com respeito pela profissional.</p>
+            <div class="depoimentos__author">Gabriela F.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Para mim, ter os dentes bem cuidados é sinônimo de autoestima e isso impacta diretamente em todas as áreas da minha vida. Fico muito feliz em ter encontrado uma profissional tão dedicada e competente em Florianópolis como a Dra. Laíse. Não troco por nada!</p>
+            <div class="depoimentos__author">Juliana B.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">Laíse é uma profissional fantástica. Muito cuidadosa, querida e preocupada com o bem estar dos pacientes. Um atendimento humanizado que faz toda a diferença, tornando a experiência de fazer qualquer procedimento muito mais tranquila e positiva. Recomendo demais!</p>
+            <div class="depoimentos__author">Gabriela P.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+          <div class="depoimentos__card">
+            <div class="depoimentos__quote">"</div>
+            <p class="depoimentos__text">A Dra Laise é uma excelente profissional!!! Muito atenciosa e muito competente. Tenho muito medo de vir no dentista mas com ela esse medo tem diminuído muito. Não troco mais de dentista e indico para todos.</p>
+            <div class="depoimentos__author">Emerson C.</div>
+            <div class="depoimentos__source">Avaliação no Google</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="depoimentos__nav">
+        <button class="depoimentos__btn" id="carousel-prev" aria-label="Anterior">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4L6 9l5 5"/></svg>
+        </button>
+        <button class="depoimentos__btn" id="carousel-next" aria-label="Próximo">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4l5 5-5 5"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESULTADOS ── -->
+  <section class="resultados" id="resultados">
+    <div class="resultados__inner">
+      <div class="section-header reveal">
+        <span class="eyebrow">Antes e depois</span>
+        <h2 class="section-title">Sorrisos planejados<br><em class="serif" style="font-style:italic">para cada pessoa.</em></h2>
+        <p style="margin-top:1rem;font-size:.95rem;color:var(--text-muted);max-width:55ch">Cada tratamento foi planejado para uma pessoa diferente. Os resultados variam de caso para caso.</p>
+      </div>
+
+      <div class="resultados__grid">
+        <div class="resultados__item reveal">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-01.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+        <div class="resultados__item reveal reveal-delay-1">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-02.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+        <div class="resultados__item reveal reveal-delay-2">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-03.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+        <div class="resultados__item reveal reveal-delay-1">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-04.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+        <div class="resultados__item reveal reveal-delay-2">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-06.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+        <div class="resultados__item reveal reveal-delay-3">
+          <img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-07.jpg" alt="Resultado de tratamento dental" loading="lazy">
+          <div class="resultados__item-label">Tratamento realizado pela Dra. Laíse Cândido · CRO-SC 16246</div>
+        </div>
+      </div>
+
+      <p class="resultados__disclaimer">Casos tratados pela Dra. Laíse Cândido · CRO-SC 16246. Publicados com consentimento dos pacientes (Res. CFO-196/2019).</p>
+    </div>
+  </section>
+
+  <!-- ── SOBRE ── -->
+  <section class="sobre" id="sobre">
+    <div class="sobre__inner">
+      <div class="sobre__image reveal">
+        <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.18.22.png" alt="Dra. Laíse Cândido" loading="lazy">
+        <div class="sobre__image-caption">Dra. Laíse Cândido · Espaço Cora · Florianópolis</div>
+      </div>
+
+      <div class="sobre__content">
+        <span class="eyebrow eyebrow--light reveal">Quem vai cuidar do seu sorriso</span>
+        <h2 class="section-title reveal reveal-delay-1" style="color:var(--white)">Dra. Laíse<br>Cândido</h2>
+        <p class="sobre__credential reveal reveal-delay-1">Reabilitação oral e estética dental · CRO-SC 16246</p>
+
+        <p class="sobre__bio reveal reveal-delay-2">
+          A Dra. Laíse Cândido atua em reabilitação oral e estética dental e acredita que um sorriso bonito precisa ser, antes de tudo, saudável e da pessoa. Com formação no Brasil e no exterior, une técnica, estudo constante e um atendimento verdadeiramente humano.
+          <br><br>
+          Cada detalhe importa: o planejamento é individual e baseado em evidência científica, e uma peça só é colocada quando fica como deveria. Tudo para que o resultado se mantenha bonito e saudável ao longo do tempo.
+        </p>
+
+        <div class="sobre__quote reveal reveal-delay-3">
+          <p>"Eu vou oferecer para você exatamente o que você precisa. Nós trabalhamos com saúde, e a gente não esqueceu disso."</p>
+          <cite>— Dra. Laíse Cândido</cite>
+        </div>
+
+        <a href="https://instagram.com/laiseccandido" class="sobre__instagram reveal reveal-delay-3" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          @laiseccandido
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOCALIZAÇÃO ── -->
+  <section class="local" id="localizacao">
+    <div class="local__inner">
+      <div class="local__content">
+        <span class="eyebrow reveal">Onde nos encontrar</span>
+        <h2 class="section-title reveal reveal-delay-1">No centro de<br><em class="serif" style="font-style:italic">Florianópolis.</em></h2>
+
+        <p style="margin-top:1rem;font-size:.95rem;color:var(--text-muted);line-height:1.7" class="reveal reveal-delay-2">
+          O atendimento é no Espaço Cora, um ambiente acolhedor pensado para que o cuidado com a saúde seja também um momento de conforto, com recepção com água e café e salas com vista.
+        </p>
+
+        <div class="local__address reveal reveal-delay-2">
+          <div class="local__address-main">
+            Ed. Somma Tower<br>
+            R. Dr. Carlos Corrêa, 141<br>
+            Salas 601/602
+          </div>
+          <div class="local__address-detail">
+            Agronômica · Florianópolis/SC · CEP 88025-250
+          </div>
+          <div class="local__hours">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+            <span><strong>Seg–Sex</strong> · 8h30 às 17h30</span>
+          </div>
+          <p class="local__parking">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-.1em"><circle cx="8" cy="8" r="6"/><path d="M6 5h3a2 2 0 010 4H6"/></svg>
+            Estacionamento do Angeloni na mesma rua.
+          </p>
+        </div>
+
+        <a href="https://wa.me/5548988547557" class="btn btn--primary reveal reveal-delay-3" target="_blank" rel="noopener">
+          WhatsApp: (48) 98854-7557
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <div class="local__map reveal reveal-delay-2">
+        <iframe
+          title="Localização Espaço Cora"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.5!2d-48.5492!3d-27.5945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952748171c49ff11%3A0x1c6e9ff2c0b4e40f!2sR.%20Dr.%20Carlos%20Corr%C3%AAa%2C%20141%20-%20Agronom%C3%B4nica%2C%20Florian%C3%B3polis%20-%20SC%2C%2088025-250!5e0!3m2!1spt-BR!2sbr!4v1696000000000"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq" id="faq">
+    <div class="faq__inner">
+      <div class="section-header section-header--center reveal">
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h2 class="section-title" style="margin-top:.5rem">Suas dúvidas,<br><em class="serif" style="font-style:italic">respondidas.</em></h2>
+      </div>
+
+      <div class="faq__list">
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Vou ficar com o sorriso artificial?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">O planejamento busca um resultado natural, com formato, cor e tamanho pensados para o seu rosto. Antes de começar, você vê o planejamento digital do seu sorriso e conversa sobre cada detalhe.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Preciso colocar lente em todos os dentes?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">Depende do planejamento. Muitas vezes, o sorriso fica harmônico com lentes em menos dentes, combinadas com um clareamento. Na avaliação, você conhece as opções e decide o que faz sentido para o seu sorriso.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Precisa desgastar os dentes?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">Depende do caso. A prioridade é preservar ao máximo os seus dentes naturais: quando o desgaste é necessário, ele é o mínimo possível, e em algumas situações, como em dentes pequenos, pode nem ser preciso.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Resina ou porcelana: qual é melhor para mim?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">As duas são boas opções quando bem indicadas. A escolha depende dos seus dentes, da sua mordida, do resultado que você deseja e da sua rotina, e é feita na avaliação, junto com você.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Quanto tempo leva o tratamento?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">Depende do que o seu sorriso precisa. Tratamentos que envolvem implantes ou ortodontia costumam levar mais tempo. Se você tem uma data importante, conte na avaliação para que o planejamento leve isso em conta.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Tenho medo de dentista. Como vai ser?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">Tudo é conversado antes, e o tratamento segue o seu ritmo. Para quem sente muita ansiedade, existe também a possibilidade de sedação, conversada caso a caso.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Quanto custa?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">O valor depende do plano de tratamento, que é feito sob medida depois da avaliação. Por isso, não existe um preço único. Na avaliação, você recebe todas as informações sobre o seu caso.</div></div>
+        </div>
+
+        <div class="faq__item reveal">
+          <button class="faq__question" aria-expanded="false">
+            Atende convênio?
+            <span class="faq__icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1v8M1 5h8"/></svg>
+            </span>
+          </button>
+          <div class="faq__answer"><div class="faq__answer-inner">Não. O atendimento é particular.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section class="cta" id="contato">
+    <div class="cta__inner">
+      <div>
+        <span class="eyebrow eyebrow--light reveal">Dando o primeiro passo</span>
+        <h2 class="cta__title reveal reveal-delay-1">Vamos conversar<br><em class="serif" style="font-style:italic">sobre o seu sorriso?</em></h2>
+        <p class="cta__text reveal reveal-delay-2">Preencha seus dados e agende sua avaliação sem custo pelo WhatsApp.</p>
+
+      </div>
+
+      <div class="cta__form reveal reveal-delay-2">
+        <div class="cta__form-title">Agende sua avaliação</div>
+        <form id="lead-form" onsubmit="handleSubmit(event)">
+          <div class="form__group">
+            <label class="form__label" for="nome">Nome</label>
+            <input class="form__input" type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="whatsapp">WhatsApp</label>
+            <input class="form__input" type="tel" id="whatsapp" name="whatsapp" placeholder="(48) 00000-0000" required autocomplete="tel">
+          </div>
+          <div class="form__checkbox">
+            <input type="checkbox" id="lgpd" required>
+            <label for="lgpd">Concordo com a <a href="#privacidade">Política de Privacidade</a> e autorizo o contato pelo WhatsApp.</label>
+          </div>
+          <button type="submit" class="form__submit">Quero agendar minha avaliação</button>
+          <p class="form__note">Ao enviar, você será direcionado ao WhatsApp de atendimento.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">Dra. Laíse Cândido</div>
+          <div class="footer__brand-sub">Reabilitação oral e estética dental</div>
+          <div class="footer__contact">
+            Atendimento no Espaço Cora<br>
+            Ed. Somma Tower · R. Dr. Carlos Corrêa, 141 · Salas 601/602<br>
+            Agronômica · Florianópolis/SC · CEP 88025-250<br>
+            <a href="https://wa.me/5548988547557" target="_blank" rel="noopener">WhatsApp: (48) 98854-7557</a><br>
+            <a href="mailto:oespacocora@gmail.com">oespacocora@gmail.com</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Serviços</div>
+          <div class="footer__col-text">
+            Lentes de resina<br>
+            Lentes de porcelana<br>
+            Reabilitação oral<br>
+            Planejamento digital<br>
+            Harmonização orofacial
+          </div>
+        </div>
+        <div>
+          <div class="footer__col-title">Siga nas redes</div>
+          <div class="footer__col-text">
+            <a href="https://instagram.com/laiseccandido" target="_blank" rel="noopener" style="color:rgba(255,255,255,.55);display:flex;align-items:center;gap:.5rem;transition:color .2s" onmouseover="this.style.color='#C6A96B'" onmouseout="this.style.color='rgba(255,255,255,.55)'">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+              @laiseccandido
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          Responsável técnica: Dra. Laíse Cândido · Cirurgiã-Dentista · CRO-SC 16246<br>
+          ESPACO CORA LTDA · CNPJ 58.913.355/0001-51 · <a href="#privacidade" id="privacidade">Política de Privacidade</a>
+        </div>
+        <div class="footer__copy">
+          © 2026 Dra. Laíse Cândido.<br>Todos os direitos reservados.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── COOKIES ── -->
+  <div class="cookies" id="cookie-banner">
+    <p class="cookies__text">
+      Usamos cookies para melhorar sua experiência e medir os resultados dos nossos anúncios. Você pode aceitar ou recusar os cookies de marketing. <a href="#privacidade">Saiba mais</a>
+    </p>
+    <div class="cookies__actions">
+      <button class="cookies__btn cookies__btn--accept" onclick="acceptCookies()">Aceitar</button>
+      <button class="cookies__btn cookies__btn--refuse" onclick="refuseCookies()">Recusar</button>
+    </div>
+  </div>
+
+  <!-- ── SCROLL TO TOP ── -->
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 13V5M5 9l4-4 4 4"/></svg>
+  </button>
+
+  <script>
+    // ── Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Nav scroll
+    const nav = document.getElementById('nav');
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 60);
+      scrollTopBtn.classList.toggle('show', y > 400);
+    });
+
+    // ── Carousel
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    let current = 0;
+    const cards = track.querySelectorAll('.depoimentos__card');
+    const visibleCount = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+    const maxIndex = () => Math.max(0, cards.length - visibleCount());
+
+    function updateCarousel() {
+      const cardWidth = cards[0].getBoundingClientRect().width + 24; // gap
+      track.style.transform = `translateX(-${current * cardWidth}px)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      current = Math.min(current + 1, maxIndex());
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      current = Math.max(current - 1, 0);
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', () => {
+      current = Math.min(current, maxIndex());
+      updateCarousel();
+    });
+
+    // Auto-advance
+    setInterval(() => {
+      current = current >= maxIndex() ? 0 : current + 1;
+      updateCarousel();
+    }, 5000);
+
+    // ── FAQ accordion
+    document.querySelectorAll('.faq__question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq__answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq__question').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          answer.classList.add('open');
+          btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ── Form submit → WhatsApp
+    function handleSubmit(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const tel = document.getElementById('whatsapp').value.trim();
+      const msg = encodeURIComponent(`Olá! Meu nome é ${nome} e vim pela página da Dra. Laíse. Gostaria de agendar uma avaliação com ela.`);
+      window.open(`https://wa.me/5548988547557?text=${msg}`, '_blank');
+    }
+
+    // ── Phone mask
+    document.getElementById('whatsapp').addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length >= 7) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      else if (v.length >= 3) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      else if (v.length > 0) v = `(${v}`;
+      e.target.value = v;
+    });
+
+    // ── Cookies
+    function showCookieBanner() {
+      if (!localStorage.getItem('cookies-choice')) {
+        setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 2000);
+      }
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookies-choice', 'accepted');
+      document.getElementById('cookie-banner').classList.remove('show');
+      // Load Meta Pixel here if needed
+    }
+
+    function refuseCookies() {
+      localStorage.setItem('cookies-choice', 'refused');
+      document.getElementById('cookie-banner').classList.remove('show');
+    }
+
+    showCookieBanner();
+  </script>
+</body>
+</html>

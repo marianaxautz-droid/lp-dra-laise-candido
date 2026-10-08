@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Laíse Cândido — Lentes e Reabilitação Oral · Florianópolis</title>
+<meta name="description" content="Lentes de resina e de porcelana e reabilitação oral planejadas sob medida, para um sorriso harmônico, com a sua cara. Florianópolis/SC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+  /* Paleta Laíse */
+  --marfim:   #f0e8df;   /* fundo base — leveza e base neutra */
+  --aveia:    #ddd0bc;   /* cards / seções secundárias — equilíbrio */
+  --areia:    #b8956a;   /* detalhe quente */
+  --vinho:    #6e2030;   /* botões, CTAs, destaques */
+  --petroleo: #243f52;   /* seções escuras */
+
+  /* aliases legados */
+  --cream:    var(--marfim);
+  --sand:     var(--aveia);
+  --espresso: #1a120e;
+  --border:   rgba(110,32,48,.15);
+  --muted:    #7a6558;
+  --serif:    'Fraunces', Georgia, serif;
+  --sans:     'DM Sans', system-ui, sans-serif;
+  --spring:   cubic-bezier(.16, 1, .1, 1);
+
+  /* ── LML tokens ───────────────────────────────────────── */
+  --lml-bg:          var(--marfim);
+  --lml-card:        #faf4ee;
+  --lml-text:        #1a120e;
+  --lml-soft:        #6b5548;
+  --lml-faint:       #9a8070;
+  --lml-line:        rgba(26,18,14,.09);
+  --lml-deep:        var(--petroleo);
+  --lml-ondeep:      #f0e8df;
+  --lml-ondeep-soft: rgba(240,232,223,.65);
+  --lml-btn:         var(--vinho);
+  --lml-onbtn:       #ffffff;
+  --lml-accent:      var(--vinho);
+}
+
+/* ─── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--espresso);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes springUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 5vw;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s ease, backdrop-filter .4s ease, box-shadow .4s ease;
+}
+nav.scrolled {
+  background: rgba(240,232,223,0.93);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 var(--lml-line);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--lml-text);
+  transition: color .4s ease;
+}
+.nav-logo em  { font-style: italic; font-weight: 300; }
+.nav-logo span { font-weight: 400; }
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -.005em;
+  padding: 0 20px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--lml-btn);
+  color: var(--lml-onbtn);
+  transition: background .2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-cta:hover { background: #4d1521; }
+
+/* ─── PHOTO PLACEHOLDER ──────────────────────────────────── */
+.ph {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background: var(--aveia);
+  border: 1.5px dashed rgba(22,20,31,.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.ph svg { width: 60px; height: 60px; opacity: .3; }
+.ph-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--lml-faint);
+  text-align: center;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* HERO — Hero04 layout · clean monochrome                     */
+/* ─────────────────────────────────────────────────────────── */
+
+@keyframes hero04Reveal {
+  from { opacity: 0; transform: translateY(12px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+}
+@keyframes hero04Media {
+  from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+}
+
+#hero {
+  background: var(--lml-bg);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-wash {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .6;
+  filter: blur(40px);
+  mask-image: radial-gradient(ellipse 75% 100% at top center, black 45%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 100% at top center, black 45%, transparent 75%);
+}
+.hero-wash .ph {
+  width: 100%; height: 100%; min-height: 0;
+  border: none; border-radius: 0;
+  background: var(--marfim);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 10;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: calc(5rem + 64px) 1.5rem 5rem;
+  gap: 3rem;
+}
+@media (min-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    padding: calc(7rem + 64px) 1.5rem 7rem;
+    gap: 4rem;
+  }
+}
+
+.hero-l {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.8vw, 48px);
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  color: var(--lml-text);
+  text-wrap: balance;
+  animation: hero04Reveal .5s cubic-bezier(.22,1,.36,1) .05s both;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--lml-soft);
+  max-width: 26rem;
+  text-wrap: balance;
+  animation: hero04Reveal .5s cubic-bezier(.22,1,.36,1) .15s both;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.25rem;
+  margin-top: .25rem;
+  animation: hero04Reveal .5s cubic-bezier(.22,1,.36,1) .25s both;
+}
+
+/* Primary CTA — black pill */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--vinho);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  letter-spacing: -.005em;
+  transition: background .18s ease, transform .25s ease, box-shadow .3s ease;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);
+  transform: translateX(-110%);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -14px var(--vinho); }
+.btn-primary:hover::after { transform: translateX(110%); }
+
+/* Secondary CTA — link */
+.hero-link {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--lml-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity .18s ease;
+}
+.hero-link:hover { opacity: .6; }
+
+.hero-r {
+  width: 100%;
+  animation: hero04Media .6s cubic-bezier(.22,1,.36,1) .3s both;
+}
+
+.art-collage {
+  position: relative;
+  width: 100%;
+  padding-bottom: 22%;
+}
+
+.collage-primary {
+  width: 72%;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.08);
+}
+.collage-primary .ph {
+  width: 100%; height: 100%; min-height: 0;
+  border: none; border-radius: 16px;
+  background: var(--aveia);
+}
+
+.collage-secondary {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.1);
+  z-index: 1;
+}
+.collage-secondary .ph {
+  width: 100%; height: 100%; min-height: 0;
+  border: none; border-radius: 12px;
+  background: var(--areia);
+}
+
+@media (max-width: 640px) {
+  .art-collage { padding-bottom: 0; display: flex; flex-direction: column; gap: 10px; }
+  .collage-primary { width: 100%; }
+  .collage-secondary { position: static; width: 60%; }
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* LML BASE CLASSES                                            */
+/* ─────────────────────────────────────────────────────────── */
+
+/* wrap */
+.lml-wrap { width:100%; max-width:1240px; margin:0 auto; padding:0 clamp(16px,3.4vw,40px); box-sizing:border-box; }
+
+/* section base */
+.lml-sec { position:relative; scroll-margin-top:84px; }
+
+/* typography */
+.lml-kicker { font-family:var(--sans); font-size:12.5px; font-weight:500; color:var(--lml-soft); letter-spacing:.06em; text-transform:uppercase; }
+.lml-h2 { font-family:var(--serif); font-weight:400; font-size:clamp(34px,4.6vw,56px); line-height:1.08; letter-spacing:-.03em; color:var(--lml-text); text-wrap:balance; }
+.lml-lede { font-family:var(--sans); font-size:14px; line-height:1.65; color:var(--lml-soft); max-width:30em; text-wrap:pretty; }
+.lml-statement { font-family:var(--serif); font-size:clamp(18px,1.75vw,23px); line-height:1.3; letter-spacing:-.025em; color:var(--lml-text); max-width:19em; padding-top:8px; text-wrap:pretty; }
+
+/* button */
+.lml-btn { position:relative; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:38px; padding:0 20px; border-radius:999px; background:var(--lml-btn); color:var(--lml-onbtn); font-size:13px; font-weight:500; letter-spacing:-.005em; white-space:nowrap; overflow:hidden; transition:transform .25s ease,box-shadow .3s ease; border:none; cursor:pointer; }
+.lml-btn::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%); transform:translateX(-110%); transition:transform .7s cubic-bezier(.2,.7,.2,1); }
+.lml-btn:hover { transform:translateY(-1px); box-shadow:0 12px 26px -14px var(--lml-btn); }
+.lml-btn:hover::after { transform:translateX(110%); }
+
+/* reveal animation */
+.lml-rv { transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1); }
+[data-rv=true] { opacity:0; transform:translateY(20px); }
+[data-rv=true].is-visible { opacity:1; transform:none; }
+
+/* ── DORES ────────────────────────────────────── */
+.lml-what { padding:clamp(64px,8vw,104px) 0 clamp(40px,5vw,64px); background:var(--lml-bg); }
+.dores-head { display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px; margin-bottom:clamp(36px,4.5vw,52px); }
+.dores-head .lml-h2 { max-width:18em; }
+.dores-head .lml-statement { max-width:38em; padding-top:0; }
+.dores-cta { display:flex; justify-content:center; padding-top:clamp(28px,3.5vw,44px); }
+
+/* feature cards */
+.lml-feats { display:grid; grid-template-columns:2.15fr 1fr 1fr; gap:12px; padding-bottom:clamp(40px,5vw,64px); }
+.lml-feat { position:relative; min-height:clamp(180px,16vw,220px); border-radius:20px; padding:22px 22px 20px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; isolation:isolate; transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s; }
+.lml-feat:hover { transform:translateY(-4px); }
+.lml-feat h3 { font-family:var(--serif); font-size:clamp(15px,1.4vw,18px); font-weight:400; line-height:1.22; letter-spacing:-.025em; margin-bottom:8px; }
+.lml-feat p { font-family:var(--sans); font-size:12.5px; line-height:1.6; }
+.lml-feat--bloom { background:var(--aveia); color:var(--lml-text); }
+.lml-feat--bloom h3 { color:var(--lml-text); }
+.lml-feat--bloom p { color:var(--lml-soft); }
+.lml-feat--deep { background:var(--lml-deep); color:var(--lml-ondeep); }
+.lml-feat--deep p { color:var(--lml-ondeep-soft); }
+.lml-feats--4 { grid-template-columns:repeat(4,1fr); }
+.lml-feats--4 .lml-feat--bloom { grid-column:auto; }
+@media (max-width:900px) { .lml-feats { grid-template-columns:1fr 1fr; } .lml-feat--bloom { grid-column:1/-1; } }
+@media (max-width:900px) { .lml-feats--4 { grid-template-columns:1fr 1fr; } .lml-feats--4 .lml-feat--bloom { grid-column:auto; } }
+@media (max-width:600px) { .lml-feats { grid-template-columns:1fr; } }
+@media (max-width:540px) { .lml-feats--4 { grid-template-columns:1fr; } }
+
+/* ── LENTES/REAB (lml-uc pattern) ─────────────── */
+.lml-uc-sec { background:var(--lml-bg); padding-bottom:clamp(72px,9vw,120px); }
+.lml-uc-sec--dark { background:var(--lml-deep); }
+.lml-uc { display:grid; grid-template-columns:1fr 1fr; gap:32px clamp(32px,5vw,72px); align-items:start; }
+.lml-uchead .lml-kicker { margin-bottom:8px; }
+.lml-uchead .lml-h2 { margin:8px 0 14px; }
+
+/* tab list */
+.lml-tabs { display:flex; flex-direction:column; margin-top:clamp(28px,4vw,48px); border-top:1px solid var(--lml-line); }
+.lml-tab { position:relative; display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:8px; padding:16px 4px; border-bottom:1px solid var(--lml-line); color:var(--lml-faint); transition:color .3s,padding .4s cubic-bezier(.2,.7,.2,1); cursor:pointer; background:none; border-left:0; border-right:0; border-top:0; text-align:left; font-family:inherit; }
+.lml-tab:hover { color:var(--lml-text); }
+.lml-tab.is-active { color:var(--lml-text); padding-left:10px; }
+.lml-tabn { font-family:var(--sans); font-size:11px; font-variant-numeric:tabular-nums; letter-spacing:.06em; text-transform:uppercase; }
+.lml-tabt { font-family:var(--serif); font-size:clamp(15px,1.4vw,19px); letter-spacing:-.025em; font-weight:400; }
+.lml-uc-sec--dark .lml-tabs { border-top-color:rgba(255,255,255,.1); }
+.lml-uc-sec--dark .lml-tab { border-bottom-color:rgba(255,255,255,.1); color:rgba(255,255,255,.4); }
+.lml-uc-sec--dark .lml-tab:hover,.lml-uc-sec--dark .lml-tab.is-active { color:#fff; }
+.lml-uc-sec--dark .lml-h2,.lml-uc-sec--dark .lml-kicker { color:var(--lml-ondeep); }
+.lml-uc-sec--dark .lml-lede { color:var(--lml-ondeep-soft); }
+.reab-col-divider { border-right:1px solid rgba(255,255,255,.1); padding-right:clamp(32px,5vw,72px); }
+@media (max-width:760px) { .reab-col-divider { border-right:none; padding-right:0; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:40px; } }
+
+/* card panel */
+.lml-card { position:relative; display:flex; flex-direction:column; min-height:clamp(380px,34vw,480px); border-radius:22px; background:var(--lml-card); overflow:hidden; }
+.lml-card .ph { width:100%; height:100%; min-height:0; border:none; border-radius:22px; background:var(--aveia); }
+.lml-cardtext { padding:22px; }
+.lml-cardtext h3 { font-family:var(--serif); font-size:clamp(18px,1.6vw,22px); font-weight:400; letter-spacing:-.025em; margin-bottom:8px; }
+.lml-cardtext p { font-family:var(--sans); font-size:13px; line-height:1.65; color:var(--lml-soft); }
+
+@media (max-width:760px) { .lml-uc { grid-template-columns:1fr; } }
+
+/* ── DEPOIMENTOS ─────────────────────────────── */
+.lml-depo { background:var(--lml-bg); padding:clamp(64px,8vw,104px) 0; }
+.lml-depohead { display:grid; grid-template-columns:1.25fr 1fr; gap:28px 48px; align-items:start; margin-bottom:clamp(40px,5vw,64px); }
+.lml-depocards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.lml-depocard { background:var(--lml-card); border-radius:20px; padding:24px; display:flex; flex-direction:column; gap:16px; }
+.lml-depocard blockquote { font-family:var(--serif); font-size:14px; line-height:1.65; color:var(--lml-text); margin:0; font-style:italic; font-weight:300; }
+.lml-depocard footer { font-family:var(--sans); font-size:12px; color:var(--lml-faint); font-style:normal; }
+.lml-stars { color:var(--vinho); font-size:12px; letter-spacing:2px; margin-bottom:4px; }
+@media (max-width:760px) { .lml-depohead { grid-template-columns:1fr; } .lml-depocards { grid-template-columns:1fr; } }
+@media (min-width:760px) and (max-width:1000px) { .lml-depocards { grid-template-columns:1fr 1fr; } }
+
+/* ── FAQ (lml-faq pattern EXATO) ─────────────── */
+.lml-faq-sec { background:var(--lml-bg); padding:clamp(64px,8vw,104px) 0; }
+.lml-faq { display:grid; grid-template-columns:1fr 1.35fr; gap:32px clamp(32px,6vw,96px); }
+.lml-faqhead .lml-h2 { margin:8px 0 14px; }
+@media (max-width:760px) { .lml-faq { grid-template-columns:1fr; } }
+
+.lml-qa { border-bottom:1px solid var(--lml-line); }
+.lml-q { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; background:none; border:none; cursor:pointer; font-family:var(--serif); font-size:15px; font-weight:400; letter-spacing:-.015em; color:var(--lml-text); text-align:left; }
+.lml-plus { width:18px; height:18px; flex-shrink:0; position:relative; }
+.lml-plus::before,.lml-plus::after { content:""; position:absolute; background:var(--lml-faint); border-radius:2px; transition:transform .3s,opacity .3s; }
+.lml-plus::before { left:50%; top:0; bottom:0; width:1.5px; margin-left:-.75px; }
+.lml-plus::after { top:50%; left:0; right:0; height:1.5px; margin-top:-.75px; }
+.lml-q[aria-expanded="true"] .lml-plus::before { transform:rotate(90deg); opacity:0; }
+.lml-a { overflow:hidden; max-height:0; transition:max-height .4s cubic-bezier(.2,.7,.2,1); }
+.lml-a[data-open="true"] { max-height:400px; }
+.lml-a > div { font-family:var(--sans); padding:0 0 18px; font-size:14px; line-height:1.65; color:var(--lml-soft); }
+
+/* ── FORM (lml-join pattern) ─────────────────── */
+.lml-join-sec { background:var(--lml-bg); padding:0 0 clamp(40px,5vw,64px); }
+.lml-joinbox { position:relative; border-radius:26px; overflow:hidden; background:var(--lml-deep); padding:clamp(48px,7vw,96px) clamp(24px,5vw,64px); display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px; }
+.lml-joinbox .lml-h2 { color:var(--lml-ondeep); max-width:16em; }
+.lml-joinbox .lml-lede { color:var(--lml-ondeep-soft); }
+.lml-form { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:8px; width:100%; max-width:480px; }
+.lml-input { flex:1; min-width:200px; height:46px; padding:0 18px; border-radius:999px; border:1.5px solid rgba(255,255,255,.15); background:rgba(255,255,255,.07); color:var(--lml-ondeep); font-family:inherit; font-size:14px; outline:none; transition:border-color .2s; }
+.lml-input::placeholder { color:rgba(255,255,255,.35); }
+.lml-input:focus { border-color:rgba(255,255,255,.4); }
+.lml-form .lml-btn { height:46px; padding:0 26px; font-size:14px; background:var(--lml-ondeep); color:var(--lml-deep); }
+.lml-privacy { font-size:11px; color:rgba(255,255,255,.35); }
+
+/* ── FOOTER ──────────────────────────────────── */
+.lml-footer { background:var(--lml-bg); border-top:1px solid var(--lml-line); padding:clamp(40px,5vw,64px) 0; }
+.lml-footgrid { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:32px; }
+.lml-footbrand { font-family:var(--serif); font-size:15px; font-weight:400; letter-spacing:-.02em; margin-bottom:8px; color:var(--lml-text); }
+.lml-footdesc { font-size:12.5px; line-height:1.55; color:var(--lml-faint); max-width:20em; }
+.lml-footcol h4 { font-size:12px; font-weight:500; color:var(--lml-faint); letter-spacing:.04em; text-transform:uppercase; margin-bottom:12px; }
+.lml-footlinks { display:flex; flex-direction:column; gap:8px; }
+.lml-footlinks a { font-size:13.5px; color:var(--lml-soft); transition:color .2s; }
+.lml-footlinks a:hover { color:var(--lml-text); }
+.lml-footbottom { margin-top:clamp(32px,4vw,56px); padding-top:20px; border-top:1px solid var(--lml-line); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:11px; color:var(--lml-faint); }
+@media (max-width:760px) { .lml-footgrid { grid-template-columns:1fr; } }
+
+/* ─────────────────────────────────────────────────────────── */
+/* COOKIE BANNER                                               */
+/* ─────────────────────────────────────────────────────────── */
+#cookie {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: var(--lml-card);
+  border-top: 1px solid var(--lml-line);
+  padding: 20px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  transform: translateY(0);
+  transition: transform .55s cubic-bezier(.16,1,.1,1);
+  box-shadow: 0 -4px 32px rgba(22,20,31,.07);
+}
+#cookie.hidden { transform: translateY(115%); pointer-events: none; }
+.cookie-txt {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--lml-soft);
+  line-height: 1.55;
+  max-width: 600px;
+}
+.cookie-txt a { color: var(--lml-text); text-decoration: underline; }
+.cookie-btns { display: flex; gap: 12px; flex-shrink: 0; }
+.c-accept {
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 10px 22px; background: var(--lml-btn); color: var(--lml-onbtn);
+  border: none; cursor: pointer; border-radius: 999px; transition: background .2s ease;
+}
+.c-accept:hover { background: #4d1521; }
+.c-decline {
+  font-family: var(--sans); font-size: 12px; font-weight: 400;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 10px 20px; background: transparent; color: var(--lml-soft);
+  border: 1px solid var(--lml-line); cursor: pointer; border-radius: 999px;
+  transition: border-color .2s ease, color .2s ease;
+}
+.c-decline:hover { border-color: var(--lml-text); color: var(--lml-text); }
+
+/* ─────────────────────────────────────────────────────────── */
+/* RESULTADOS (kept)                                           */
+/* ─────────────────────────────────────────────────────────── */
+#resultados {
+  background: var(--lml-bg);
+  padding: 80px 0;
+}
+.resultados-wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px,3.4vw,40px); }
+.resultados-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 50px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1.08;
+  color: var(--lml-text);
+  margin-bottom: 40px;
+}
+.resultados-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.resultado-item { aspect-ratio: 1; border-radius: 14px; overflow: hidden; }
+.resultado-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.resultado-item:hover img { transform: scale(1.04); }
+@media (max-width: 760px) { .resultados-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ─── SCROLL REVEAL (.lml-rv handled by JS) ──── */
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo" aria-label="Dra. Laíse Cândido — início">
+    <em>Laíse</em><span>Cândido</span>
+  </a>
+  <a href="#formulario" class="nav-cta">Quero agendar</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Apresentação">
+  <!-- washImage: atmospheric blur -->
+  <div class="hero-wash" aria-hidden="true"><img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.19.40.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+  <div class="hero-inner">
+    <!-- Left: title · description · CTAs -->
+    <div class="hero-l">
+      <h1 class="hero-title">
+        Natural no resultado,<br>
+        <em>natural no cuidado.</em>
+      </h1>
+      <p class="hero-desc">Lentes de resina e de porcelana e reabilitação oral planejadas sob medida, para um sorriso harmônico, com a sua cara e preservando ao máximo os seus dentes.</p>
+      <div class="hero-actions">
+        <a href="#formulario" class="btn-primary">Quero agendar minha avaliação</a>
+        <a href="#dores" class="hero-link">Como ela trabalha</a>
+      </div>
+    </div>
+
+    <!-- Right: ArtCollage -->
+    <div class="hero-r" aria-hidden="true">
+      <div class="art-collage">
+        <div class="collage-primary">
+          <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.19.40.png" alt="Dra. Laíse Cândido sorrindo" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        </div>
+        <div class="collage-secondary">
+          <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.18.22.png" alt="Dra. Laíse Cândido no consultório" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     DORES: lml-what pattern
+═══════════════════════════════════════════════════════════ -->
+<section id="dores" class="lml-sec lml-what">
+  <div class="lml-wrap">
+    <!-- cabeçalho centralizado -->
+    <div class="dores-head lml-rv" data-rv="true">
+      <h2 class="lml-h2">Você se reconhece em alguma dessas situações?</h2>
+      <p class="lml-statement">O sorriso interfere na segurança com que você se apresenta no trabalho, nas relações e nas fotos com quem você ama. Cuidar dele também é cuidar de como você se sente.</p>
+    </div>
+    <!-- 4 cards em linha -->
+    <div class="lml-feats lml-feats--4 lml-rv" data-rv="true">
+      <article class="lml-feat lml-feat--bloom">
+        <div>
+          <h3>Dentes pequenos para o seu sorriso</h3>
+          <p>Eles deixam a aparência mais jovem do que você é e não combinam com o momento que você vive.</p>
+        </div>
+      </article>
+      <article class="lml-feat lml-feat--deep">
+        <div>
+          <h3>Dentes desgastados ou escurecidos</h3>
+          <p>Com o tempo, o desgaste e a cor envelhecem o sorriso, e ele deixa de parecer com você.</p>
+        </div>
+      </article>
+      <article class="lml-feat lml-feat--deep">
+        <div>
+          <h3>Restaurações antigas e manchadas</h3>
+          <p>Opacas ou com cor diferente dos outros dentes, elas aparecem em cada foto.</p>
+        </div>
+      </article>
+      <article class="lml-feat lml-feat--deep">
+        <div>
+          <h3>Vontade de mudar, medo de exagerar</h3>
+          <p>Você quer um sorriso mais bonito, mas não quer dentes com cara de artificial.</p>
+        </div>
+      </article>
+    </div>
+    <!-- botão centralizado -->
+    <div class="dores-cta lml-rv" data-rv="true">
+      <a href="#formulario" class="lml-btn">Quero agendar minha avaliação</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     REABILITAÇÃO: lml-uc dark
+═══════════════════════════════════════════════════════════ -->
+<section id="reab" class="lml-sec lml-uc-sec lml-uc-sec--dark" style="padding-top:clamp(64px,8vw,104px);">
+  <div class="lml-wrap">
+    <div class="lml-uc lml-rv" data-rv="true">
+      <!-- Lentes (esquerda) -->
+      <div class="lml-uchead reab-col-divider">
+        <p class="lml-kicker">Estética dental</p>
+        <h2 class="lml-h2">Lentes de resina e de porcelana</h2>
+        <p class="lml-lede">As lentes são lâminas finas aplicadas na parte da frente dos dentes para ajustar cor, formato e tamanho. Elas podem ser feitas em resina ou em porcelana, e as duas são boas opções quando bem indicadas.</p>
+        <div class="lml-tabs" role="list">
+          <div class="lml-tab is-active" role="listitem">
+            <span class="lml-tabn">01</span>
+            <span class="lml-tabt">Natural</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">02</span>
+            <span class="lml-tabt">Conservador</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">03</span>
+            <span class="lml-tabt">Planejado</span>
+          </div>
+        </div>
+      </div>
+      <!-- Reabilitação (direita) -->
+      <div class="lml-uchead">
+        <p class="lml-kicker">Reabilitação oral</p>
+        <h2 class="lml-h2">Quando o sorriso precisa de mais do que lentes.</h2>
+        <p class="lml-lede">Reabilitar é devolver ao sorriso o que ele perdeu com o tempo: a estética, a função e a saúde. E, junto com elas, a segurança de sorrir.</p>
+        <div class="lml-tabs" role="list">
+          <div class="lml-tab is-active" role="listitem">
+            <span class="lml-tabn">01</span>
+            <span class="lml-tabt">Estética, função e saúde juntas</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">02</span>
+            <span class="lml-tabt">Seus dentes em primeiro lugar</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">03</span>
+            <span class="lml-tabt">Planejado por ela do início ao fim</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROCESSO: lml-uc com 4 tabs
+═══════════════════════════════════════════════════════════ -->
+<section id="processo" class="lml-sec lml-uc-sec" style="padding-top:clamp(64px,8vw,104px);">
+  <div class="lml-wrap">
+    <div class="lml-uc lml-rv" data-rv="true">
+      <div class="lml-uchead">
+        <p class="lml-kicker">Como funciona</p>
+        <h2 class="lml-h2">Como a Dra. Laíse cuida de você</h2>
+        <p class="lml-lede">Cada tratamento começa por uma conversa e segue no seu ritmo. Você entende cada passo e decide junto com ela.</p>
+        <div class="lml-tabs" role="list">
+          <div class="lml-tab is-active" role="listitem">
+            <span class="lml-tabn">01</span>
+            <span class="lml-tabt">Ela começa ouvindo</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">02</span>
+            <span class="lml-tabt">Avaliação com calma</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">03</span>
+            <span class="lml-tabt">Você vê o plano e decide junto</span>
+          </div>
+          <div class="lml-tab" role="listitem">
+            <span class="lml-tabn">04</span>
+            <span class="lml-tabt">Tratamento no seu tempo</span>
+          </div>
+        </div>
+      </div>
+      <div class="lml-card">
+        <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.21.29.png" alt="Dra. Laíse Cândido no consultório" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     RESULTADOS
+═══════════════════════════════════════════════════════════ -->
+<section id="resultados">
+  <div class="resultados-wrap">
+    <h2 class="resultados-title lml-rv" data-rv="true">Resultados reais, naturais, com a cara de cada pessoa</h2>
+    <div class="resultados-grid">
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-01.jpg" alt="Antes e depois — caso 01"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-02.jpg" alt="Antes e depois — caso 02"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-03.jpg" alt="Antes e depois — caso 03"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-04.jpg" alt="Antes e depois — caso 04"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-05.jpg" alt="Antes e depois — caso 05"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-06.jpg" alt="Antes e depois — caso 06"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-07.jpg" alt="Antes e depois — caso 07"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-08.jpg" alt="Antes e depois — caso 08"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-09.jpg" alt="Antes e depois — caso 09"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-10.jpg" alt="Antes e depois — caso 10"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-11.jpg" alt="Antes e depois — caso 11"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-17.jpg" alt="Antes e depois — caso 12"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-18.jpg" alt="Antes e depois — caso 13"></div>
+      <div class="resultado-item lml-rv" data-rv="true"><img src="Antes e Depois - Espaço Cora/Usar essas fotos/antes-depois-19.jpg" alt="Antes e depois — caso 14"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DEPOIMENTOS: lml-backers + cards
+═══════════════════════════════════════════════════════════ -->
+<section id="depo" class="lml-sec lml-depo">
+  <div class="lml-wrap">
+    <div class="lml-depohead lml-rv" data-rv="true">
+      <div>
+        <p class="lml-kicker">Pacientes</p>
+        <h2 class="lml-h2">Odontologia com afeto, nas palavras de quem é atendido.</h2>
+      </div>
+      <div style="padding-top:8px;">
+        <div class="lml-stars">★★★★★</div>
+        <p class="lml-lede" style="max-width:none;">5,0 no Google · 79 avaliações</p>
+      </div>
+    </div>
+    <div class="lml-depocards lml-rv" data-rv="true">
+      <div class="lml-depocard">
+        <blockquote>"Laíse é uma dentista que tem muita técnica e primor em seu trabalho, vive estudando e se atualizando, mas se destaca ainda mais pelo acolhimento e afeto com que trata os pacientes!"</blockquote>
+        <footer>Isadora C. · Google</footer>
+      </div>
+      <div class="lml-depocard">
+        <blockquote>"Laíse é muito acolhedora, busca entender o contexto de cada problema para sugerir as melhores soluções, com carinho, habilidade e calma. Até então nem achava que esse atendimento era possível, mas com ela é."</blockquote>
+        <footer>Mirelle C. · Google</footer>
+      </div>
+      <div class="lml-depocard">
+        <blockquote>"Para mim, ter os dentes bem cuidados é sinônimo de autoestima e isso impacta diretamente em todas as áreas da minha vida. Fico muito feliz em ter encontrado uma profissional tão dedicada e competente em Florianópolis."</blockquote>
+        <footer>Juliana B. · Google</footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SOBRE: lml-uc dark
+═══════════════════════════════════════════════════════════ -->
+<section id="sobre" class="lml-sec lml-uc-sec lml-uc-sec--dark" style="padding-top:clamp(64px,8vw,104px);">
+  <div class="lml-wrap">
+    <div class="lml-uc lml-rv" data-rv="true">
+      <div class="lml-uchead">
+        <p class="lml-kicker">Quem vai cuidar do seu sorriso</p>
+        <h2 class="lml-h2" style="color:var(--lml-ondeep);">Dra. Laíse Cândido</h2>
+        <p class="lml-lede">A Dra. Laíse Cândido atua em reabilitação oral e estética dental e acredita que um sorriso bonito precisa ser, antes de tudo, saudável e da pessoa. Com formação no Brasil e no exterior, une técnica, estudo constante e um atendimento verdadeiramente humano.</p>
+        <p class="lml-lede" style="margin-top:16px;">Ela é exigente com cada detalhe: o planejamento é individual e baseado em evidência científica, e se uma peça não ficar como deveria, ela não coloca. Tudo para que o resultado se mantenha bonito e saudável ao longo do tempo.</p>
+        <a href="https://instagram.com/laiseccandido" target="_blank" rel="noopener" class="lml-btn" style="margin-top:28px;">@laiseccandido</a>
+      </div>
+      <div class="lml-card">
+        <img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.20.19.png" alt="Dra. Laíse Cândido" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FAQ: lml-faq pattern
+═══════════════════════════════════════════════════════════ -->
+<section id="faq" class="lml-sec lml-faq-sec">
+  <div class="lml-wrap">
+    <div class="lml-faq lml-rv" data-rv="true">
+      <div class="lml-faqhead">
+        <p class="lml-kicker">FAQ</p>
+        <h2 class="lml-h2">Perguntas frequentes</h2>
+        <p class="lml-lede">Tudo o que você precisa saber antes de agendar. Ainda com dúvidas? A gente responde pelo WhatsApp.</p>
+      </div>
+      <div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="true" aria-controls="faq0">Vou ficar com o sorriso artificial?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq0" class="lml-a" data-open="true" role="region"><div><p>O planejamento busca um resultado natural, com formato, cor e tamanho pensados para o seu rosto. Antes de começar, você vê o planejamento digital do seu sorriso e conversa sobre cada detalhe.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq1">Preciso colocar lente em todos os dentes?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq1" class="lml-a" data-open="false" role="region"><div><p>Depende do planejamento. Muitas vezes, o sorriso fica harmônico com lentes em menos dentes, combinadas com um clareamento. A Dra. Laíse mostra as opções na avaliação, e você decide junto com ela.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq2">Precisa desgastar os dentes?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq2" class="lml-a" data-open="false" role="region"><div><p>Depende do caso. A prioridade é preservar ao máximo os seus dentes naturais: quando o desgaste é necessário, ele é o mínimo possível.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq3">Resina ou porcelana: qual é melhor para mim?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq3" class="lml-a" data-open="false" role="region"><div><p>As duas são boas opções quando bem indicadas. A escolha depende dos seus dentes, da sua mordida, do resultado que você deseja e da sua rotina, e é feita na avaliação, junto com você.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq4">Tenho medo de dentista. Como vai ser?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq4" class="lml-a" data-open="false" role="region"><div><p>Tudo é conversado antes, e o tratamento segue o seu ritmo. Para quem sente muita ansiedade, existe também a possibilidade de sedação, conversada caso a caso.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq5">Quanto custa?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq5" class="lml-a" data-open="false" role="region"><div><p>O valor depende do plano de tratamento, que é feito sob medida depois da avaliação. Por isso, não existe um preço único. Na avaliação, você recebe todas as informações sobre o seu caso.</p></div></div>
+        </div>
+        <div class="lml-qa">
+          <h3><button class="lml-q" aria-expanded="false" aria-controls="faq6">A Dra. Laíse atende convênio?<span class="lml-plus" aria-hidden="true"></span></button></h3>
+          <div id="faq6" class="lml-a" data-open="false" role="region"><div><p>Não. O atendimento é particular.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FORMULÁRIO: lml-join pattern
+═══════════════════════════════════════════════════════════ -->
+<section id="formulario" class="lml-sec lml-join-sec">
+  <div class="lml-wrap">
+    <div class="lml-joinbox lml-rv" data-rv="true">
+      <h2 class="lml-h2">Vamos conversar sobre o seu sorriso?</h2>
+      <p class="lml-lede">Preencha seus dados e continue a conversa pelo WhatsApp com o atendimento do Espaço Cora para agendar sua avaliação com a Dra. Laíse.</p>
+      <form class="lml-form" id="laise-form" novalidate>
+        <input class="lml-input" type="text" id="form-nome" placeholder="Seu nome" required>
+        <input class="lml-input" type="tel" id="form-wa" placeholder="WhatsApp (48) 9..." required>
+        <button type="submit" class="lml-btn">Quero agendar</button>
+      </form>
+      <p class="lml-privacy">Ao enviar, você será direcionado ao WhatsApp de atendimento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="lml-footer">
+  <div class="lml-wrap">
+    <div class="lml-footgrid">
+      <div>
+        <p class="lml-footbrand">Dra. Laíse Cândido</p>
+        <p class="lml-footdesc">Reabilitação oral e estética dental — Florianópolis/SC</p>
+      </div>
+      <div class="lml-footcol">
+        <h4>Contato</h4>
+        <div class="lml-footlinks">
+          <a href="https://instagram.com/laiseccandido" target="_blank">@laiseccandido</a>
+          <a href="tel:+5548988547557">(48) 98854-7557</a>
+          <a href="mailto:oespacocora@gmail.com">oespacocora@gmail.com</a>
+        </div>
+      </div>
+      <div class="lml-footcol">
+        <h4>Endereço</h4>
+        <div class="lml-footlinks">
+          <a href="#" target="_blank">Ed. Somma Tower<br>R. Dr. Carlos Corrêa, 141<br>Salas 601/602 · Agronômica<br>Florianópolis/SC</a>
+        </div>
+      </div>
+    </div>
+    <div class="lml-footbottom">
+      <span>Responsável técnica: Dra. Laíse Cândido · Cirurgiã-Dentista · CRO-SC 16246</span>
+      <span>ESPACO CORA LTDA · CNPJ 58.913.355/0001-51 · © 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie" role="complementary" aria-label="Aviso de cookies">
+  <p class="cookie-txt">Utilizamos cookies para melhorar a sua experiência neste site. Ao continuar, você concorda com nossa <a href="#">Política de Privacidade</a>.</p>
+  <div class="cookie-btns">
+    <button class="c-decline" id="c-decline">Recusar</button>
+    <button class="c-accept" id="c-accept">Aceitar</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── NAV scroll ───────────────────────────────── */
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── lml-rv: reveal on scroll ─────────────────── */
+  var rvEls = document.querySelectorAll('[data-rv="true"]');
+  var rvObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        rvObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  rvEls.forEach(function(el) { rvObs.observe(el); });
+
+  /* ── FAQ accordion ────────────────────────────── */
+  document.querySelectorAll('.lml-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (panel) panel.dataset.open = !expanded;
+    });
+  });
+
+  /* ── Form → WhatsApp ──────────────────────────── */
+  var form = document.getElementById('laise-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var nome = document.getElementById('form-nome').value.trim();
+      if (!nome) { document.getElementById('form-nome').focus(); return; }
+      var msg = encodeURIComponent('Olá! Meu nome é ' + nome + ' e vim pela página da Dra. Laíse. Gostaria de agendar uma avaliação com ela.');
+      window.open('https://wa.me/5548988547557?text=' + msg, '_blank');
+    });
+  }
+
+  /* ── Cookie ───────────────────────────────────── */
+  var banner   = document.getElementById('cookie');
+  var cAccept  = document.getElementById('c-accept');
+  var cDecline = document.getElementById('c-decline');
+
+  function dismissCookie() { banner.classList.add('hidden'); }
+
+  if (localStorage.getItem('laise-cookie')) {
+    dismissCookie();
+  }
+  if (cAccept)  { cAccept.addEventListener('click',  function() { localStorage.setItem('laise-cookie', '1'); dismissCookie(); }); }
+  if (cDecline) { cDecline.addEventListener('click', function() { localStorage.setItem('laise-cookie', '0'); dismissCookie(); }); }
+
+})();
+</script>
+</body>
+</html>
