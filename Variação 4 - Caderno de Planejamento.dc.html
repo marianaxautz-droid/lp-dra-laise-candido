@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#F7F5EF;-webkit-font-smoothing:antialiased}a{color:#4E3A22}a:hover{color:#6C7B56}*{box-sizing:border-box}input:focus{outline:2px solid #9FAD8A}</style>
+</helmet>
+<div style="font-family:Karla,sans-serif;color:#4E3A22;font-size:17px;line-height:1.65;max-width:1240px;margin:0 auto;padding:0 22px">
+
+<header style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:20px 0;border-bottom:1px solid #4E3A22;font-size:13px">
+  <span style="font-family:'Libre Caslon Text',serif;font-size:17px">Dra. Laíse Cândido</span>
+  <span style="display:flex;gap:18px"><span style="color:#6C7B56">Florianópolis</span><a href="#agendar" style="font-weight:600">Agendar avaliação</a></span>
+</header>
+
+<section data-screen-label="Hero" style="padding:clamp(36px,7vw,90px) 0 clamp(48px,8vw,100px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 64px;align-items:end">
+  <div style="display:flex;flex-direction:column;gap:26px">
+    <span style="font-size:13px;font-weight:600;letter-spacing:.04em">Dra. Laíse Cândido · Reabilitação oral e estética dental</span>
+    <h1 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(40px,6.6vw,80px);line-height:1.04;margin:0;letter-spacing:-.02em;text-wrap:balance">Lentes que começam pelo que já é seu: <em style="color:#6C7B56">os seus dentes.</em></h1>
+    <p style="margin:0;max-width:520px">{{ heroSub }}</p>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+      <a href="#agendar" style="background:#4E3A22;color:#F7F5EF;text-decoration:none;font-weight:600;padding:18px 26px;min-height:56px;display:flex;align-items:center" style-hover="background:#6C7B56;color:#F7F5EF">Quero agendar minha avaliação →</a>
+      <span style="font-size:14px;color:#6C7B56">{{ heroApoio }}</span>
+    </div>
+  </div>
+  <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+    <div style="aspect-ratio:4/5;overflow:hidden;background:#E9E5D8"><img src="fotos/laise-janela-perfil.png" alt="Retrato da Dra. Laíse Cândido" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block"></div>
+    <figcaption style="display:flex;justify-content:space-between;gap:12px;font-size:12px;border-top:1px solid #CFC8B4;padding-top:8px"><span style="color:#6C7B56">Fig. 01</span><span>Dra. Laíse Cândido · CRO-SC 16246</span></figcaption>
+  </figure>
+</section>
+
+<section data-screen-label="Dores" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 01</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">Talvez seja isso que incomoda você no seu sorriso.</h2></div>
+  <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column">
+    <sc-for list="{{ dores }}" as="d" hint-placeholder-count="4">
+      <div style="display:grid;grid-template-columns:28px 1fr;gap:4px 16px;padding:18px 0;border-bottom:1px solid #CFC8B4"><span style="font-size:20px;line-height:1.3;color:#9FAD8A">□</span><div style="display:flex;flex-direction:column"><strong style="font-weight:600;font-size:18px">{{ d.t }}</strong><span>{{ d.d }}</span></div></div>
+    </sc-for>
+    <p style="margin:26px 0 0;font-family:'Libre Caslon Text',serif;font-style:italic;font-size:clamp(20px,2.4vw,24px);line-height:1.45">{{ doresFecho }}</p>
+  </div>
+</section>
+
+<section data-screen-label="Lentes" id="lentes" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 02 · Estética dental</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">Lentes de resina e de porcelana</h2><figure style="margin:12px 0 0;display:flex;flex-direction:column;gap:6px"><div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#E4E0D3 0 10px,#ECE9DE 10px 20px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;text-align:center;padding:12px">[IMAGEM] detalhe de sorriso com lentes</div><figcaption style="font-size:12px;color:#6C7B56">Fig. 02</figcaption></figure></div>
+  <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:28px">
+    <p style="margin:0;font-size:19px">{{ lentesTexto }}</p>
+    <div style="background:#E9E5D8;padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:10px;border-top:4px solid #9FAD8A"><h3 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:0">Seu plano é feito sob medida</h3><p style="margin:0">{{ lentesDestaque }}</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0 28px">
+      <sc-for list="{{ lentesCards }}" as="c" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:6px;padding:18px 0;border-top:1px solid #4E3A22"><strong style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:22px">{{ c.t }}</strong><span style="font-size:15px">{{ c.d }}</span></div></sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Reabilitação" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 03 · Reabilitação oral</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">Quando o sorriso precisa de mais do que lentes.</h2><figure style="margin:12px 0 0;display:flex;flex-direction:column;gap:6px"><div style="aspect-ratio:4/3;overflow:hidden;background:#E9E5D8"><img src="fotos/laise-mesa-pensando.png" alt="Dra. Laíse planejando um caso" style="width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block"></div><figcaption style="font-size:12px;color:#6C7B56">Fig. 03</figcaption></figure></div>
+  <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:28px">
+    <p style="margin:0;font-size:19px">{{ reabTexto }}</p>
+    <div style="background:#E9E5D8;padding:clamp(24px,4vw,40px);border-top:4px solid #6C7B56"><p style="margin:0">{{ reabDestaque }}</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0 28px">
+      <sc-for list="{{ reabCards }}" as="c" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:6px;padding:18px 0;border-top:1px solid #4E3A22"><strong style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:22px;line-height:1.25">{{ c.t }}</strong><span style="font-size:15px">{{ c.d }}</span></div></sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Cuidado" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:flex;flex-direction:column;gap:36px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px 64px;align-items:end"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 04</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.08;margin:0">Como a Dra. Laíse cuida de você</h2></div><p style="margin:0">{{ cuidadoApoio }}</p></div>
+  <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0 28px">
+    <sc-for list="{{ passos }}" as="p" hint-placeholder-count="4">
+      <li style="display:flex;flex-direction:column;gap:8px;padding:20px 0;border-top:1px solid #CFC8B4"><span style="font-family:'Libre Caslon Text',serif;font-style:italic;font-size:44px;line-height:1;color:#9FAD8A">{{ p.n }}</span><strong style="font-weight:600;font-size:18px">{{ p.t }}</strong><span style="font-size:15px">{{ p.d }}</span></li>
+    </sc-for>
+  </ol>
+  <aside style="background:#4E3A22;color:#F7F5EF;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+    <div style="min-height:300px;position:relative"><img src="fotos/laise-consultorio-rindo.png" alt="Dra. Laíse no consultório" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block"></div>
+    <div style="grid-column:span 2;min-width:0;padding:clamp(26px,4vw,48px);display:flex;flex-direction:column;gap:12px;justify-content:center"><span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9FAD8A">Nota</span><h3 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1.1;margin:0">{{ medoTitulo }}</h3><p style="margin:0">{{ medoTexto }}</p><a href="#agendar" style="align-self:flex-start;background:#9FAD8A;color:#4E3A22;text-decoration:none;font-weight:600;padding:18px 26px;margin-top:8px" style-hover="background:#F7F5EF;color:#4E3A22">Quero agendar minha avaliação →</a></div>
+  </aside>
+</section>
+
+<section data-screen-label="Prova social" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 05</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">O que dizem os pacientes da Dra. Laíse.</h2><a href="{{ googleUrl }}" target="_blank" style="align-self:flex-start;border:1px solid #4E3A22;padding:8px 14px;font-size:14px;font-weight:600;margin-top:8px;text-decoration:none">★ 5,0 no Google · 79 avaliações · <span style="text-decoration:underline">Ver no Google</span></a></div>
+  <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:24px">
+    <figure style="margin:0;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+      <blockquote style="margin:0;font-family:'Libre Caslon Text',serif;font-size:clamp(20px,2.6vw,28px);line-height:1.45;text-wrap:pretty">“{{ depAtual.t }}”</blockquote>
+      <figcaption style="font-weight:600">{{ depAtual.n }} · <span style="font-weight:400;color:#6C7B56">Avaliação no Google</span></figcaption>
+    </figure>
+    <div style="display:flex;align-items:center;gap:16px;border-top:1px solid #4E3A22;padding-top:16px">
+      <button onClick="{{ depAnt }}" aria-label="Anterior" style="font:inherit;font-size:20px;width:48px;height:48px;border:1px solid #4E3A22;background:none;color:#4E3A22;cursor:pointer" style-hover="background:#4E3A22;color:#F7F5EF">←</button>
+      <button onClick="{{ depProx }}" aria-label="Próximo" style="font:inherit;font-size:20px;width:48px;height:48px;border:1px solid #4E3A22;background:none;color:#4E3A22;cursor:pointer" style-hover="background:#4E3A22;color:#F7F5EF">→</button>
+      <span style="font-family:'Libre Caslon Text',serif;font-size:16px;margin-left:auto">{{ depContador }}</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Resultados" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:flex;flex-direction:column;gap:36px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px 64px;align-items:end"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 06</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.08;margin:0">Sorrisos planejados para cada pessoa</h2></div><p style="margin:0">{{ resApoio }}</p></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px 28px">
+    <sc-for list="{{ resultados }}" as="r" hint-placeholder-count="6">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:10px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase">Antes</span><div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#E4E0D3 0 10px,#ECE9DE 10px 20px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px">[IMAGEM]</div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6C7B56">Depois</span><div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#D3DAC6 0 10px,#DDE2D2 10px 20px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px">[IMAGEM]</div></div>
+        </div>
+        <figcaption style="font-size:13px;border-top:1px solid #CFC8B4;padding-top:8px">{{ r.l }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Sobre" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:36px 64px">
+  <figure style="margin:0;display:flex;flex-direction:column;gap:10px"><div style="aspect-ratio:3/4;overflow:hidden;background:#E9E5D8"><img src="fotos/laise-balcao-bordado.png" alt="Dra. Laíse Cândido no consultório" style="width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block"></div><figcaption style="font-size:12px;color:#6C7B56">Fig. 04</figcaption></figure>
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 07 · Quem vai cuidar do seu sorriso</span>
+    <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(32px,4.6vw,52px);line-height:1.05;margin:0">Dra. Laíse Cândido</h2>
+    <span style="font-size:14px;font-weight:600">Reabilitação oral e estética dental · CRO-SC 16246</span>
+    <p style="margin:0">{{ bio }}</p><p style="margin:0">{{ bio2 }}</p>
+    <figure style="margin:12px 0;padding:20px 0;border-top:1px solid #4E3A22;border-bottom:1px solid #4E3A22;display:flex;flex-direction:column;gap:10px"><blockquote style="margin:0;font-family:'Libre Caslon Text',serif;font-style:italic;font-size:clamp(22px,3vw,30px);line-height:1.35">“{{ citacao }}”</blockquote><figcaption style="font-size:14px;font-weight:600">— Dra. Laíse Cândido</figcaption></figure>
+    <a href="{{ instaUrl }}" target="_blank" style="font-weight:600;align-self:flex-start">Acompanhe o trabalho da Dra. Laíse no Instagram: @laiseccandido ↗</a>
+  </div>
+</section>
+
+<section data-screen-label="Onde" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 08</span>
+    <h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">No centro geográfico de Florianópolis.</h2>
+    <p style="margin:0">{{ ondeTexto }}</p>
+    <dl style="margin:0;display:flex;flex-direction:column;font-size:15px">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-top:1px solid #CFC8B4"><dt style="font-weight:600">Endereço</dt><dd style="margin:0;display:flex;flex-direction:column"><span>{{ end1 }}</span><span>{{ end2 }}</span><span>{{ end3 }}</span></dd></div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-top:1px solid #CFC8B4"><dt style="font-weight:600">Horário</dt><dd style="margin:0">{{ horario }}</dd></div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-top:1px solid #CFC8B4;border-bottom:1px solid #CFC8B4"><dt style="font-weight:600">Estacionamento</dt><dd style="margin:0">{{ estacionamento }}</dd></div>
+    </dl>
+  </div>
+  <div style="grid-column:span 2;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+    <div style="min-height:360px;overflow:hidden;background:#E9E5D8"><img src="fotos/espaco-cora-trelica.png" alt="Espaço Cora" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    <iframe title="Mapa do Espaço Cora" src="{{ mapa }}" style="width:100%;min-height:360px;height:100%;border:1px solid #4E3A22;filter:grayscale(1) contrast(.9)" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section data-screen-label="FAQ" style="border-top:1px solid #4E3A22;padding:clamp(48px,8vw,96px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:28px 64px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 09</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:0">Perguntas frequentes</h2></div>
+  <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;border-bottom:1px solid #4E3A22">
+    <sc-for list="{{ faq }}" as="f" hint-placeholder-count="9">
+      <div style="border-top:1px solid #CFC8B4">
+        <button onClick="{{ f.toggle }}" style="all:unset;cursor:pointer;width:100%;box-sizing:border-box;display:grid;grid-template-columns:36px 1fr 24px;gap:12px;align-items:baseline;padding:18px 0;min-height:44px"><span style="font-size:13px;color:#6C7B56;font-weight:600">{{ f.n }}</span><span style="font-family:'Libre Caslon Text',serif;font-size:19px;line-height:1.35">{{ f.q }}</span><span style="font-size:20px;text-align:right">{{ f.sinal }}</span></button>
+        <sc-if value="{{ f.open }}"><p style="margin:0 0 20px 48px;font-size:16px">{{ f.a }}</p></sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Agendar" id="agendar" style="background:#E9E5D8;margin:0 -22px;padding:clamp(48px,8vw,96px) 22px">
+  <div style="max-width:1196px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:36px 64px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:14px"><span style="font-family:'Libre Caslon Text',serif;font-size:15px;color:#6C7B56">§ 10</span><h2 style="font-family:'Libre Caslon Text',serif;font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.05;margin:0">Vamos conversar sobre o seu sorriso?</h2><p style="margin:0">{{ finalTexto }}</p></div>
+    <form onSubmit="{{ enviar }}" style="display:flex;flex-direction:column;gap:18px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600">Nome<input value="{{ nome }}" onChange="{{ onNome }}" autocomplete="name" style="font:inherit;font-weight:400;font-size:18px;padding:12px 0;border:0;border-bottom:1px solid #4E3A22;background:transparent;color:#4E3A22;min-height:48px"></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600">WhatsApp<input value="{{ whats }}" onChange="{{ onWhats }}" inputmode="tel" autocomplete="tel" placeholder="(48) 99999-9999" style="font:inherit;font-weight:400;font-size:18px;padding:12px 0;border:0;border-bottom:1px solid #4E3A22;background:transparent;color:#4E3A22;min-height:48px"></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45"><input type="checkbox" checked="{{ consentido }}" onChange="{{ onConsent }}" style="margin-top:3px;accent-color:#4E3A22;width:18px;height:18px;flex:none"><span>Concordo com a <a href="#">Política de Privacidade</a> e autorizo o contato pelo WhatsApp.</span></label>
+      <sc-if value="{{ temErro }}"><span style="font-size:14px;font-weight:600;color:#8A3B23">{{ erro }}</span></sc-if>
+      <button type="submit" style="font:inherit;font-weight:600;background:#4E3A22;color:#F7F5EF;border:0;padding:18px;min-height:56px;cursor:pointer;text-align:left;display:flex;justify-content:space-between" style-hover="background:#6C7B56"><span>Quero agendar minha avaliação</span><span>→</span></button>
+      <span style="font-size:13px;color:#6C7B56">{{ microcopy }}</span>
+    </form>
+  </div>
+</section>
+
+<footer style="padding:32px 0 120px;display:flex;flex-direction:column;gap:18px;font-size:14px;line-height:1.6">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px 64px">
+    <div style="display:flex;flex-direction:column"><span style="font-family:'Libre Caslon Text',serif;font-size:18px">Dra. Laíse Cândido</span><span>Reabilitação oral e estética dental</span><a href="{{ instaUrl }}" target="_blank">Instagram: @laiseccandido</a></div>
+    <div style="display:flex;flex-direction:column"><strong style="font-weight:600">Atendimento no Espaço Cora</strong><span>{{ end1 }} · {{ end2 }}</span><span>{{ end3 }}</span><span>{{ rodapeContato }}</span></div>
+  </div>
+  <div style="font-size:11px;color:#6C7B56;border-top:1px solid #CFC8B4;padding-top:12px;display:flex;flex-direction:column;gap:4px"><span>{{ legal }}</span><a href="#" style="color:#6C7B56">Política de Privacidade</a></div>
+</footer>
+
+<sc-if value="{{ cookieVisivel }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;right:12px;bottom:12px;left:12px;max-width:400px;margin-left:auto;background:#F7F5EF;border:1px solid #4E3A22;padding:18px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.5;z-index:20">
+    <span>{{ cookieTexto }} <a href="#">Saiba mais</a></span>
+    <div style="display:flex;gap:8px"><button onClick="{{ recusar }}" style="flex:1;font:inherit;font-weight:600;background:none;border:1px solid #4E3A22;color:#4E3A22;padding:10px;min-height:44px;cursor:pointer">Recusar</button><button onClick="{{ aceitar }}" style="flex:1;font:inherit;font-weight:600;background:#4E3A22;border:0;color:#F7F5EF;padding:10px;min-height:44px;cursor:pointer">Aceitar</button></div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dep: 0 };
+  componentDidMount() { import('./conteudo.js').then(m => { this.m = m; this.setState({ cookie: m.readCookie() }); }); }
+  renderVals() {
+    if (!this.m) return { cookieVisivel: false, depAtual: {} };
+    const v = this.m.vals(this), n = v.depoimentos.length, i = this.state.dep;
+    v.depAtual = v.depoimentos[i];
+    v.depContador = String(i + 1).padStart(2, '0') + ' / ' + n;
+    v.depAnt = () => this.setState(s => ({ dep: (s.dep - 1 + n) % n }));
+    v.depProx = () => this.setState(s => ({ dep: (s.dep + 1) % n }));
+    return v;
+  }
+}
+</script>
+</body>
+</html>

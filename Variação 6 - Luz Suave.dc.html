@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#D3C1AE;-webkit-font-smoothing:antialiased}a{color:#5B2B2F}a:hover{color:#1F3D4E}*{box-sizing:border-box}input:focus{outline:2px solid #BCA085;outline-offset:1px}</style>
+</helmet>
+<div style="font-family:'Albert Sans',sans-serif;color:#4A4541;font-size:16px;line-height:1.6;background:#D3C1AE;min-height:100vh">
+<main style="max-width:680px;margin:0 auto;background:#F2EBE1;overflow:hidden;position:relative">
+
+<section data-screen-label="Hero" style="position:relative">
+  <div style="position:relative;height:min(128vw,820px);overflow:hidden;background:#1F3D4E">
+    <img src="fotos/laise-janela-perfil.png" alt="Retrato da Dra. Laíse Cândido" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block">
+    <div style="position:absolute;inset:0;background:radial-gradient(70% 45% at 10% 8%,rgba(188,160,133,.55),rgba(188,160,133,0) 70%),radial-gradient(60% 40% at 95% 30%,rgba(91,43,47,.45),rgba(91,43,47,0) 70%),linear-gradient(180deg,rgba(31,61,78,.45) 0%,rgba(31,61,78,0) 22%,rgba(31,61,78,0) 55%,rgba(242,235,225,.7) 85%,#F2EBE1 100%)"></div>
+    <div style="position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;padding:26px 20px;color:#F2EBE1;text-align:center;gap:2px">
+      <span style="font-weight:300;font-size:clamp(34px,8vw,48px);letter-spacing:-.02em;line-height:1">Laíse Cândido</span>
+      <span style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500">Espaço Cora · Florianópolis</span>
+    </div>
+  </div>
+  <div style="padding:8px clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:22px">
+    <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A6656;font-weight:500">Dra. Laíse Cândido · Reabilitação oral e estética dental</span>
+    <h1 style="font-weight:300;font-size:clamp(34px,7vw,48px);line-height:1.1;letter-spacing:-.02em;margin:0;color:#1F3D4E;text-wrap:balance">Um sorriso mais bonito, que continua sendo o seu.</h1>
+    <p style="margin:0;font-size:17px">{{ heroSub }}</p>
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+      <a href="#agendar" style="background:#5B2B2F;color:#F2EBE1;text-decoration:none;font-weight:500;padding:17px 28px;border-radius:999px;min-height:54px;display:flex;align-items:center" style-hover="background:#1F3D4E;color:#F2EBE1">Quero agendar minha avaliação</a>
+      <span style="font-size:14px;color:#7A6656">{{ heroApoio }}</span>
+    </div>
+    <span style="font-size:13px;color:#7A6656">{{ heroIdent }}</span>
+  </div>
+</section>
+
+<section data-screen-label="Dores" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:28px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;color:#1F3D4E">Você se reconhece em alguma dessas situações?</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+    <sc-for list="{{ doresLuz }}" as="d" hint-placeholder-count="4">
+      <div style="position:relative;min-height:230px;border-radius:22px;overflow:hidden;background:{{ d.bg }};display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#F2EBE1;gap:6px">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(20,24,28,.45) 100%)"></div>
+        <strong style="position:relative;font-weight:500;font-size:17px;line-height:1.25">{{ d.t }}</strong>
+        <span style="position:relative;font-size:14px;line-height:1.45">{{ d.d }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:0;font-size:18px;font-weight:300;line-height:1.55;color:#1F3D4E">{{ doresFecho }}</p>
+</section>
+
+<section data-screen-label="Lentes" id="lentes" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:24px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A6656;font-weight:500">Estética dental</span>
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:-12px 0 0;color:#1F3D4E">Lentes de resina e de porcelana</h2>
+  <p style="margin:0">{{ lentesTexto }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+    <div style="min-height:260px;border-radius:22px;background:repeating-linear-gradient(135deg,#E2D4C3 0 10px,#E9DDCE 10px 20px);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;text-align:center;padding:20px;color:#4A4541">[IMAGEM] detalhe de sorriso com lentes</div>
+    <div style="position:relative;min-height:260px;border-radius:22px;overflow:hidden;background:radial-gradient(90% 70% at 15% 10%,#BCA085 0%,rgba(188,160,133,0) 65%),radial-gradient(80% 70% at 100% 100%,#5B2B2F 0%,rgba(91,43,47,0) 70%),#1F3D4E;color:#F2EBE1;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px">
+      <strong style="font-weight:400;font-size:22px;line-height:1.15">Seu plano é feito sob medida</strong>
+      <span style="font-size:14px;line-height:1.5">{{ lentesDestaque }}</span>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <sc-for list="{{ lentesCards }}" as="c" hint-placeholder-count="3">
+      <div style="display:flex;gap:16px;padding:18px 0;border-top:1px solid #DCCDBB"><span style="flex:none;width:10px;height:10px;border-radius:50%;margin-top:8px;background:radial-gradient(circle,#BCA085,#5B2B2F)"></span><div style="display:flex;flex-direction:column;gap:2px"><strong style="font-weight:500;color:#1F3D4E">{{ c.t }}</strong><span>{{ c.d }}</span></div></div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Reabilitação" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:24px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A6656;font-weight:500">Reabilitação oral</span>
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:-12px 0 0;color:#1F3D4E">Quando o sorriso precisa de mais do que lentes.</h2>
+  <p style="margin:0">{{ reabTexto }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+    <div style="position:relative;min-height:260px;border-radius:22px;overflow:hidden;background:#BCA085">
+      <img src="fotos/laise-mesa-pensando.png" alt="Dra. Laíse planejando um caso" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block">
+      <div style="position:absolute;inset:0;background:radial-gradient(80% 60% at 100% 0%,rgba(188,160,133,.55),rgba(188,160,133,0) 70%),linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(31,61,78,.5) 100%)"></div>
+    </div>
+    <div style="position:relative;min-height:260px;border-radius:22px;overflow:hidden;background:radial-gradient(90% 70% at 85% 10%,#BCA085 0%,rgba(188,160,133,0) 60%),radial-gradient(90% 80% at 0% 100%,#4D5A2F 0%,rgba(77,90,47,0) 70%),#5B2B2F;color:#F2EBE1;padding:22px;display:flex;align-items:flex-end">
+      <span style="font-size:14px;line-height:1.5">{{ reabDestaque }}</span>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <sc-for list="{{ reabCards }}" as="c" hint-placeholder-count="3">
+      <div style="display:flex;gap:16px;padding:18px 0;border-top:1px solid #DCCDBB"><span style="flex:none;width:10px;height:10px;border-radius:50%;margin-top:8px;background:radial-gradient(circle,#BCA085,#4D5A2F)"></span><div style="display:flex;flex-direction:column;gap:2px"><strong style="font-weight:500;color:#1F3D4E">{{ c.t }}</strong><span>{{ c.d }}</span></div></div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Cuidado" style="position:relative;padding:72px clamp(24px,10vw,68px);color:#F2EBE1;background:#1F3D4E;overflow:hidden">
+  <div style="position:absolute;top:-120px;left:-80px;width:420px;height:420px;border-radius:50%;background:#BCA085;opacity:.45;filter:blur(90px)"></div>
+  <div style="position:absolute;bottom:-160px;right:-120px;width:460px;height:460px;border-radius:50%;background:#5B2B2F;opacity:.7;filter:blur(90px)"></div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:28px">
+    <h2 style="font-weight:300;font-size:clamp(30px,5.8vw,40px);line-height:1.12;letter-spacing:-.015em;margin:0">Como a Dra. Laíse cuida de você</h2>
+    <p style="margin:0;font-size:17px">{{ cuidadoApoio }}</p>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ passos }}" as="p" hint-placeholder-count="4">
+        <div style="display:flex;gap:18px;padding:22px 0;border-top:1px solid rgba(242,235,225,.25)"><span style="flex:none;font-weight:300;font-size:28px;line-height:1;color:#D3C1AE;min-width:40px">{{ p.n }}</span><div style="display:flex;flex-direction:column;gap:4px"><strong style="font-weight:500;font-size:17px">{{ p.t }}</strong><span style="font-size:15px">{{ p.d }}</span></div></div>
+      </sc-for>
+    </div>
+    <div style="position:relative;border-radius:22px;overflow:hidden;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;background:#5B2B2F">
+      <img src="fotos/laise-consultorio-rindo.png" alt="Dra. Laíse no consultório" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(91,43,47,0) 20%,rgba(91,43,47,.85) 62%,#5B2B2F 100%)"></div>
+      <div style="position:relative;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-weight:400;font-size:24px;line-height:1.15;margin:0">{{ medoTitulo }}</h3>
+        <p style="margin:0;font-size:15px">{{ medoTexto }}</p>
+        <a href="#agendar" style="align-self:flex-start;background:#F2EBE1;color:#5B2B2F;text-decoration:none;font-weight:500;padding:15px 24px;border-radius:999px;margin-top:6px;min-height:50px;display:flex;align-items:center" style-hover="background:#D3C1AE;color:#5B2B2F">Quero agendar minha avaliação</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Prova social" style="padding:72px 0 64px;display:flex;flex-direction:column;gap:24px">
+  <div style="padding:0 clamp(24px,10vw,68px);display:flex;flex-direction:column;gap:16px">
+    <a href="{{ googleUrl }}" target="_blank" style="align-self:flex-start;display:flex;align-items:center;gap:10px;background:#E6DACB;border-radius:999px;padding:8px 16px;font-size:14px;text-decoration:none;color:#4A4541"><span style="color:#5B2B2F">★</span>5,0 no Google · 79 avaliações<span style="text-decoration:underline;color:#5B2B2F">Ver no Google</span></a>
+    <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;color:#1F3D4E">O que dizem os pacientes da Dra. Laíse.</h2>
+  </div>
+  <div style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 clamp(24px,10vw,68px) 8px;scroll-padding:0 clamp(24px,10vw,68px)">
+    <sc-for list="{{ depoimentos }}" as="d" hint-placeholder-count="3">
+      <figure style="margin:0;flex:0 0 min(82%,300px);scroll-snap-align:start;position:relative;overflow:hidden;background:#E6DACB;border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
+        <div style="position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:#BCA085;opacity:.5;filter:blur(40px)"></div>
+        <blockquote style="position:relative;margin:0;font-size:15px;line-height:1.55">“{{ d.t }}”</blockquote>
+        <figcaption style="position:relative;display:flex;flex-direction:column;font-size:13px"><strong style="font-weight:500;color:#1F3D4E;font-size:14px">{{ d.n }}</strong><span style="color:#7A6656">Avaliação no Google</span></figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Resultados" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:24px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;color:#1F3D4E">Sorrisos planejados para cada pessoa</h2>
+  <p style="margin:0">{{ resApoio }}</p>
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <sc-for list="{{ resultados }}" as="r" hint-placeholder-count="6">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="aspect-ratio:4/3;border-radius:18px;background:repeating-linear-gradient(135deg,#E2D4C3 0 10px,#E9DDCE 10px 20px);display:flex;align-items:flex-end;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:11px">[IMAGEM] antes</div>
+          <div style="aspect-ratio:4/3;border-radius:18px;background:repeating-linear-gradient(135deg,#D9C8B4 0 10px,#E0D1BF 10px 20px);display:flex;align-items:flex-end;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:11px">[IMAGEM] depois</div>
+        </div>
+        <figcaption style="font-size:12px;color:#7A6656">{{ r.l }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Sobre" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:24px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <div style="position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#BCA085">
+    <img src="fotos/laise-sentada-sorrindo.png" alt="Dra. Laíse Cândido" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block">
+    <div style="position:absolute;inset:0;background:radial-gradient(70% 50% at 0% 0%,rgba(188,160,133,.5),rgba(188,160,133,0) 70%),linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(31,61,78,.65) 100%)"></div>
+    <span style="position:absolute;left:20px;bottom:18px;color:#F2EBE1;font-size:14px;font-weight:500">Dra. Laíse Cândido · CRO-SC 16246</span>
+  </div>
+  <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A6656;font-weight:500">Quem vai cuidar do seu sorriso</span>
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:-12px 0 0;color:#1F3D4E">Dra. Laíse Cândido</h2>
+  <span style="font-size:14px;font-weight:500;margin-top:-12px">Reabilitação oral e estética dental · CRO-SC 16246</span>
+  <p style="margin:0">{{ bio }}</p>
+  <p style="margin:0">{{ bio2 }}</p>
+  <figure style="margin:8px 0;padding:24px 0;border-top:1px solid #CDBDAA;border-bottom:1px solid #CDBDAA;display:flex;flex-direction:column;gap:10px">
+    <blockquote style="margin:0;font-weight:300;font-size:clamp(22px,4.4vw,28px);line-height:1.3;color:#5B2B2F">“{{ citacao }}”</blockquote>
+    <figcaption style="font-size:14px;color:#7A6656">— Dra. Laíse Cândido</figcaption>
+  </figure>
+  <a href="{{ instaUrl }}" target="_blank" style="align-self:flex-start;font-weight:500">Acompanhe o trabalho da Dra. Laíse no Instagram: @laiseccandido</a>
+</section>
+
+<section data-screen-label="Onde" style="padding:0 clamp(24px,10vw,68px) 64px;display:flex;flex-direction:column;gap:22px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;color:#1F3D4E">No centro geográfico de Florianópolis.</h2>
+  <p style="margin:0">{{ ondeTexto }}</p>
+  <div style="position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/11;background:#BCA085">
+    <img src="fotos/espaco-cora-trelica.png" alt="Espaço Cora" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(31,61,78,.8) 100%)"></div>
+    <div style="position:absolute;left:20px;right:20px;bottom:18px;color:#F2EBE1;display:flex;flex-direction:column;font-size:14px;line-height:1.45"><strong style="font-weight:500;font-size:16px">Espaço Cora · {{ end1 }}</strong><span>{{ end2 }}</span><span>{{ end3 }}</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;font-size:15px">
+    <div style="display:flex;flex-direction:column;padding:14px 0;border-top:1px solid #DCCDBB"><span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7A6656;font-weight:500">Horário de atendimento</span>{{ horario }}</div>
+    <div style="display:flex;flex-direction:column;padding:14px 0;border-top:1px solid #DCCDBB;border-bottom:1px solid #DCCDBB"><span style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7A6656;font-weight:500">Estacionamento</span>{{ estacionamento }}</div>
+  </div>
+  <iframe title="Mapa do Espaço Cora" src="{{ mapa }}" style="width:100%;height:300px;border:0;border-radius:22px;filter:sepia(.3) saturate(.75)" loading="lazy"></iframe>
+</section>
+
+<section data-screen-label="FAQ" style="padding:0 clamp(24px,10vw,68px) 72px;display:flex;flex-direction:column;gap:20px">
+  <hr style="border:0;border-top:1px solid #CDBDAA;margin:0 0 20px">
+  <h2 style="font-weight:300;font-size:clamp(28px,5.4vw,36px);line-height:1.15;letter-spacing:-.015em;margin:0;color:#1F3D4E">Perguntas frequentes</h2>
+  <div style="display:flex;flex-direction:column;border-bottom:1px solid #DCCDBB">
+    <sc-for list="{{ faq }}" as="f" hint-placeholder-count="9">
+      <div style="border-top:1px solid #DCCDBB">
+        <button onClick="{{ f.toggle }}" style="all:unset;cursor:pointer;width:100%;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;min-height:56px;font-size:16px;font-weight:500;color:#1F3D4E"><span>{{ f.q }}</span><span style="flex:none;font-weight:300;font-size:24px;color:#5B2B2F">{{ f.sinal }}</span></button>
+        <sc-if value="{{ f.open }}"><p style="margin:0 0 20px;font-size:15px">{{ f.a }}</p></sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="Agendar" id="agendar" style="position:relative;padding:72px clamp(24px,10vw,68px);background:#5B2B2F;color:#F2EBE1;overflow:hidden">
+  <div style="position:absolute;top:-140px;right:-100px;width:440px;height:440px;border-radius:50%;background:#BCA085;opacity:.6;filter:blur(90px)"></div>
+  <div style="position:absolute;bottom:-180px;left:-120px;width:440px;height:440px;border-radius:50%;background:#1F3D4E;opacity:.8;filter:blur(90px)"></div>
+  <div style="position:relative;display:flex;flex-direction:column;gap:22px">
+    <h2 style="font-weight:300;font-size:clamp(32px,6.4vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0">Vamos conversar sobre o seu sorriso?</h2>
+    <p style="margin:0;font-size:17px">{{ finalTexto }}</p>
+    <form onSubmit="{{ enviar }}" style="display:flex;flex-direction:column;gap:12px;background:rgba(242,235,225,.12);border:1px solid rgba(242,235,225,.25);border-radius:24px;padding:20px;backdrop-filter:blur(12px)">
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Nome<input value="{{ nome }}" onChange="{{ onNome }}" autocomplete="name" style="font:inherit;font-size:16px;font-weight:400;padding:15px 18px;border:0;border-radius:14px;background:#F2EBE1;color:#4A4541;min-height:52px"></label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">WhatsApp<input value="{{ whats }}" onChange="{{ onWhats }}" inputmode="tel" autocomplete="tel" placeholder="(48) 99999-9999" style="font:inherit;font-size:16px;font-weight:400;padding:15px 18px;border:0;border-radius:14px;background:#F2EBE1;color:#4A4541;min-height:52px"></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;margin-top:4px"><input type="checkbox" checked="{{ consentido }}" onChange="{{ onConsent }}" style="margin-top:2px;accent-color:#BCA085;width:18px;height:18px;flex:none"><span>Concordo com a <a href="#" style="color:#F2EBE1">Política de Privacidade</a> e autorizo o contato pelo WhatsApp.</span></label>
+      <sc-if value="{{ temErro }}"><span style="font-size:14px;font-weight:500;color:#F6D3BF">{{ erro }}</span></sc-if>
+      <button type="submit" style="font:inherit;font-size:16px;font-weight:500;background:#F2EBE1;color:#5B2B2F;border:0;border-radius:999px;padding:17px;min-height:54px;cursor:pointer;margin-top:4px" style-hover="background:#D3C1AE">Quero agendar minha avaliação</button>
+      <span style="font-size:12px;text-align:center">{{ microcopy }}</span>
+    </form>
+  </div>
+</section>
+
+<footer style="padding:40px clamp(24px,10vw,68px) 110px;display:flex;flex-direction:column;gap:16px;font-size:14px;line-height:1.6">
+  <span style="font-weight:300;font-size:28px;letter-spacing:-.02em;color:#1F3D4E;line-height:1">Laíse Cândido</span>
+  <div style="display:flex;flex-direction:column"><span>Reabilitação oral e estética dental</span><a href="{{ instaUrl }}" target="_blank">Instagram: @laiseccandido</a></div>
+  <div style="display:flex;flex-direction:column"><strong style="font-weight:500">Atendimento no Espaço Cora</strong><span>{{ end1 }} · {{ end2 }}</span><span>{{ end3 }}</span><span>{{ rodapeContato }}</span></div>
+  <div style="font-size:11px;color:#7A6656;border-top:1px solid #DCCDBB;padding-top:12px;display:flex;flex-direction:column;gap:4px"><span>{{ legal }}</span><a href="#" style="color:#7A6656">Política de Privacidade</a></div>
+</footer>
+</main>
+
+<sc-if value="{{ cookieVisivel }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:12px;right:12px;bottom:12px;max-width:520px;margin:0 auto;background:rgba(242,235,225,.86);backdrop-filter:blur(16px);border:1px solid #D3C1AE;border-radius:22px;padding:16px 18px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:13px;line-height:1.45;color:#4A4541;z-index:20;box-shadow:0 12px 32px rgba(31,61,78,.18)">
+    <span style="flex:1 1 230px">{{ cookieTexto }} <a href="#">Saiba mais</a></span>
+    <div style="display:flex;gap:8px"><button onClick="{{ recusar }}" style="font:inherit;font-weight:500;background:none;border:1px solid #5B2B2F;color:#5B2B2F;border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer">Recusar</button><button onClick="{{ aceitar }}" style="font:inherit;font-weight:500;background:#5B2B2F;border:0;color:#F2EBE1;border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer">Aceitar</button></div>
+  </div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {};
+  componentDidMount() { import('./conteudo.js').then(m => { this.m = m; this.setState({ cookie: m.readCookie() }); }); }
+  renderVals() {
+    if (!this.m) return { cookieVisivel: false };
+    const v = this.m.vals(this);
+    const luz = [
+      'radial-gradient(90% 70% at 20% 0%,#D3C1AE 0%,rgba(211,193,174,0) 65%),radial-gradient(90% 80% at 100% 100%,#5B2B2F 0%,rgba(91,43,47,0) 70%),#9C7660',
+      'radial-gradient(80% 70% at 85% 10%,#BCA085 0%,rgba(188,160,133,0) 60%),#1F3D4E',
+      'radial-gradient(90% 70% at 10% 15%,#D3C1AE 0%,rgba(211,193,174,0) 60%),radial-gradient(80% 70% at 100% 100%,#1F3D4E 0%,rgba(31,61,78,0) 70%),#4D5A2F',
+      'radial-gradient(90% 70% at 90% 0%,#BCA085 0%,rgba(188,160,133,0) 62%),#5B2B2F'
+    ];
+    v.doresLuz = v.dores.map((d, i) => ({ ...d, bg: luz[i % 4] }));
+    return v;
+  }
+}
+</script>
+</body>
+</html>
