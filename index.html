@@ -420,6 +420,18 @@ body.lb-open .mq-track{animation-play-state:paused}
 .has-bg-shader{position:relative;isolation:isolate}
 .sec-shader{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block;opacity:0;transition:opacity 1.2s ease}
 .has-bg-shader.shader-on .sec-shader{opacity:1}
+
+/* popup da Política de Privacidade */
+.pp-modal{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:24px;background:rgba(26,18,14,.55);backdrop-filter:blur(4px);opacity:0;transition:opacity .25s ease}
+.pp-modal.is-on{opacity:1}
+.pp-modal[hidden]{display:none}
+.pp-box{width:min(760px,100%);height:min(82vh,860px);background:var(--marfim);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
+.pp-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 12px 24px;border-bottom:1px solid var(--line);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.pp-close{width:40px;height:40px;border-radius:50%;font-size:28px;line-height:1;color:var(--vinho)}
+.pp-close:hover{background:rgba(110,32,48,.08)}
+.pp-frame{flex:1;width:100%;border:0;background:var(--marfim)}
+body.pp-lock{overflow:hidden}
+@media (max-width:600px){.pp-modal{padding:10px}.pp-box{height:92vh;border-radius:16px}}
 </style>
 </head>
 <body>
@@ -714,7 +726,7 @@ body.lb-open .mq-track{animation-play-state:paused}
       <form id="laise-form" novalidate>
         <label class="field">Nome<input type="text" id="form-nome" autocomplete="name" placeholder="Seu nome completo aqui" required></label>
         <label class="field">WhatsApp<input type="tel" id="form-wa" inputmode="tel" autocomplete="tel" placeholder="(48) 99999-9999" required></label>
-        <label class="consent"><input type="checkbox" id="form-ok" required><span>Concordo com a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a> e autorizo o contato pelo WhatsApp.</span></label>
+        <label class="consent"><input type="checkbox" id="form-ok" required><span>Concordo com a <a href="privacidade.html" data-policy-popup>Política de Privacidade</a> e autorizo o contato pelo WhatsApp.</span></label>
         <p class="form-err" id="form-err" role="alert"></p>
         <button type="submit" class="btn">Quero agendar minha avaliação</button>
         <p class="note">Ao enviar, você será direcionado ao WhatsApp de atendimento.</p>
@@ -754,8 +766,15 @@ body.lb-open .mq-track{animation-play-state:paused}
 
 <div class="mcta" id="mcta"><a href="#formulario" class="btn">Quero agendar minha avaliação</a></div>
 
+<!-- popup da Política de Privacidade (formulário e aviso de cookies) -->
+<div class="pp-modal" id="ppModal" role="dialog" aria-modal="true" aria-label="Política de Privacidade" hidden>
+  <div class="pp-box">
+    <div class="pp-head"><span>Política de Privacidade</span><button type="button" class="pp-close" id="ppClose" aria-label="Fechar">&times;</button></div>
+    <iframe class="pp-frame" id="ppFrame" title="Política de Privacidade" src="about:blank"></iframe>
+  </div>
+</div>
 <div id="cookie" class="hidden" role="dialog" aria-label="Aviso de cookies">
-  <p class="cookie-txt">Usamos cookies para melhorar sua experiência e medir os resultados dos nossos anúncios. Você pode aceitar ou recusar os cookies de marketing. <a href="privacidade.html#cookies">Saiba mais</a></p>
+  <p class="cookie-txt">Usamos cookies para melhorar sua experiência e medir os resultados dos nossos anúncios. Você pode aceitar ou recusar os cookies de marketing. <a href="privacidade.html#cookies" data-policy-popup>Saiba mais</a></p>
   <div class="cookie-btns"><button class="c-decline" id="c-decline">Recusar</button><button class="c-accept" id="c-accept">Aceitar</button></div>
 </div>
 
@@ -872,6 +891,17 @@ body.lb-open .mq-track{animation-play-state:paused}
 
   // depoimentos: "ver mais" no celular
   (function(){var b=document.getElementById('dp-more-btn');if(!b)return;b.addEventListener('click',function(){document.getElementById('depo').classList.add('dp-open');});})();
+
+  // popup da Política de Privacidade (formulário e aviso de cookies)
+  (function(){
+    var modal=document.getElementById('ppModal'),frame=document.getElementById('ppFrame'),last=null;if(!modal)return;
+    function open(href){last=document.activeElement;frame.src=href;modal.hidden=false;document.body.classList.add('pp-lock');requestAnimationFrame(function(){modal.classList.add('is-on');});document.getElementById('ppClose').focus();}
+    function close(){modal.classList.remove('is-on');document.body.classList.remove('pp-lock');setTimeout(function(){modal.hidden=true;},250);if(last)last.focus();}
+    document.querySelectorAll('[data-policy-popup]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();open(a.getAttribute('href'));});});
+    document.getElementById('ppClose').addEventListener('click',close);
+    modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
+  })();
 </script>
 </body>
 </html>
