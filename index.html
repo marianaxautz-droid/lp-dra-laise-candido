@@ -316,14 +316,14 @@ footer.site{padding:clamp(56px,7vw,88px) 0 40px}
 /* lentes: dois carrosséis contínuos (antes e depois) */
 .mq{display:flex;flex-direction:column;gap:12px;min-width:0}
 .mq-row{overflow:hidden}
-.mq-track{display:flex;gap:12px;width:max-content;animation:mq-left 45s linear infinite}
+.mq-track{display:flex;gap:12px;width:max-content;animation:mq-left 45s linear infinite;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .mq-row--right .mq-track{animation-name:mq-right}
 .mq-row--left .mq-track{animation-duration:95s}
 .mq-row--right .mq-track{animation-duration:89s}
-.mq-row:hover .mq-track{animation-play-state:paused}
+@media (hover:hover) and (pointer:fine){.mq-row:hover .mq-track{animation-play-state:paused}}
 .mq-track img{width:clamp(150px,18vw,230px);height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:14px;flex:none}
-@keyframes mq-left{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}
-@keyframes mq-right{from{transform:translateX(calc(-50% - 6px))}to{transform:translateX(0)}}
+@keyframes mq-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 6px),0,0)}}
+@keyframes mq-right{from{transform:translate3d(calc(-50% - 6px),0,0)}to{transform:translate3d(0,0,0)}}
 .mq-cap{text-align:center;font-size:12px;color:var(--faint);margin-top:4px}
 .mq-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;letter-spacing:.02em;color:var(--soft);margin-top:6px}
 @media (max-width:700px){.mq-track img{width:200px}}
@@ -515,68 +515,68 @@ body.pp-lock{overflow:hidden}
   <div class="mq" data-rv>
     <div class="mq-row mq-row--left">
       <div class="mq-track">
-        <img src="antes-depois/mini/caso-01.webp" data-full="antes-depois/caso-01.webp" alt="Antes e depois, caso 1" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-03.webp" data-full="antes-depois/caso-03.webp" alt="Antes e depois, caso 3" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-05.webp" data-full="antes-depois/caso-05.webp" alt="Antes e depois, caso 5" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-07.webp" data-full="antes-depois/caso-07.webp" alt="Antes e depois, caso 7" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-09.webp" data-full="antes-depois/caso-09.webp" alt="Antes e depois, caso 9" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-11.webp" data-full="antes-depois/caso-11.webp" alt="Antes e depois, caso 11" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-13.webp" data-full="antes-depois/caso-13.webp" alt="Antes e depois, caso 13" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-15.webp" data-full="antes-depois/caso-15.webp" alt="Antes e depois, caso 15" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-17.webp" data-full="antes-depois/caso-17.webp" alt="Antes e depois, caso 17" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-19.webp" data-full="antes-depois/caso-19.webp" alt="Antes e depois, caso 19" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-21.webp" data-full="antes-depois/caso-21.webp" alt="Antes e depois, caso 21" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-23.webp" data-full="antes-depois/caso-23.webp" alt="Antes e depois, caso 23" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-25.webp" data-full="antes-depois/caso-25.webp" alt="Antes e depois, caso 25" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-27.webp" data-full="antes-depois/caso-27.webp" alt="Antes e depois, caso 27" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-29.webp" data-full="antes-depois/caso-29.webp" alt="Antes e depois, caso 29" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-01.webp" data-full="antes-depois/caso-01.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-03.webp" data-full="antes-depois/caso-03.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-05.webp" data-full="antes-depois/caso-05.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-07.webp" data-full="antes-depois/caso-07.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-09.webp" data-full="antes-depois/caso-09.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-11.webp" data-full="antes-depois/caso-11.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-13.webp" data-full="antes-depois/caso-13.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-15.webp" data-full="antes-depois/caso-15.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-17.webp" data-full="antes-depois/caso-17.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-19.webp" data-full="antes-depois/caso-19.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-21.webp" data-full="antes-depois/caso-21.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-23.webp" data-full="antes-depois/caso-23.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-25.webp" data-full="antes-depois/caso-25.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-27.webp" data-full="antes-depois/caso-27.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-29.webp" data-full="antes-depois/caso-29.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
+        <img src="antes-depois/mini/caso-01.webp" data-full="antes-depois/caso-01.webp" alt="Antes e depois, caso 1" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-03.webp" data-full="antes-depois/caso-03.webp" alt="Antes e depois, caso 3" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-05.webp" data-full="antes-depois/caso-05.webp" alt="Antes e depois, caso 5" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-07.webp" data-full="antes-depois/caso-07.webp" alt="Antes e depois, caso 7" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-09.webp" data-full="antes-depois/caso-09.webp" alt="Antes e depois, caso 9" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-11.webp" data-full="antes-depois/caso-11.webp" alt="Antes e depois, caso 11" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-13.webp" data-full="antes-depois/caso-13.webp" alt="Antes e depois, caso 13" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-15.webp" data-full="antes-depois/caso-15.webp" alt="Antes e depois, caso 15" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-17.webp" data-full="antes-depois/caso-17.webp" alt="Antes e depois, caso 17" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-19.webp" data-full="antes-depois/caso-19.webp" alt="Antes e depois, caso 19" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-21.webp" data-full="antes-depois/caso-21.webp" alt="Antes e depois, caso 21" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-23.webp" data-full="antes-depois/caso-23.webp" alt="Antes e depois, caso 23" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-25.webp" data-full="antes-depois/caso-25.webp" alt="Antes e depois, caso 25" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-27.webp" data-full="antes-depois/caso-27.webp" alt="Antes e depois, caso 27" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-29.webp" data-full="antes-depois/caso-29.webp" alt="Antes e depois, caso 29" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-01.webp" data-full="antes-depois/caso-01.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-03.webp" data-full="antes-depois/caso-03.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-05.webp" data-full="antes-depois/caso-05.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-07.webp" data-full="antes-depois/caso-07.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-09.webp" data-full="antes-depois/caso-09.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-11.webp" data-full="antes-depois/caso-11.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-13.webp" data-full="antes-depois/caso-13.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-15.webp" data-full="antes-depois/caso-15.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-17.webp" data-full="antes-depois/caso-17.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-19.webp" data-full="antes-depois/caso-19.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-21.webp" data-full="antes-depois/caso-21.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-23.webp" data-full="antes-depois/caso-23.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-25.webp" data-full="antes-depois/caso-25.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-27.webp" data-full="antes-depois/caso-27.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-29.webp" data-full="antes-depois/caso-29.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
       </div>
     </div>
     <div class="mq-row mq-row--right">
       <div class="mq-track">
-        <img src="antes-depois/mini/caso-02.webp" data-full="antes-depois/caso-02.webp" alt="Antes e depois, caso 2" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-04.webp" data-full="antes-depois/caso-04.webp" alt="Antes e depois, caso 4" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-06.webp" data-full="antes-depois/caso-06.webp" alt="Antes e depois, caso 6" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-08.webp" data-full="antes-depois/caso-08.webp" alt="Antes e depois, caso 8" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-10.webp" data-full="antes-depois/caso-10.webp" alt="Antes e depois, caso 10" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-12.webp" data-full="antes-depois/caso-12.webp" alt="Antes e depois, caso 12" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-14.webp" data-full="antes-depois/caso-14.webp" alt="Antes e depois, caso 14" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-16.webp" data-full="antes-depois/caso-16.webp" alt="Antes e depois, caso 16" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-18.webp" data-full="antes-depois/caso-18.webp" alt="Antes e depois, caso 18" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-20.webp" data-full="antes-depois/caso-20.webp" alt="Antes e depois, caso 20" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-22.webp" data-full="antes-depois/caso-22.webp" alt="Antes e depois, caso 22" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-24.webp" data-full="antes-depois/caso-24.webp" alt="Antes e depois, caso 24" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-26.webp" data-full="antes-depois/caso-26.webp" alt="Antes e depois, caso 26" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-28.webp" data-full="antes-depois/caso-28.webp" alt="Antes e depois, caso 28" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-02.webp" data-full="antes-depois/caso-02.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-04.webp" data-full="antes-depois/caso-04.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-06.webp" data-full="antes-depois/caso-06.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-08.webp" data-full="antes-depois/caso-08.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-10.webp" data-full="antes-depois/caso-10.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-12.webp" data-full="antes-depois/caso-12.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-14.webp" data-full="antes-depois/caso-14.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-16.webp" data-full="antes-depois/caso-16.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-18.webp" data-full="antes-depois/caso-18.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-20.webp" data-full="antes-depois/caso-20.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-22.webp" data-full="antes-depois/caso-22.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-24.webp" data-full="antes-depois/caso-24.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-26.webp" data-full="antes-depois/caso-26.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
-        <img src="antes-depois/mini/caso-28.webp" data-full="antes-depois/caso-28.webp" alt="" aria-hidden="true" width="480" height="480" loading="lazy">
+        <img src="antes-depois/mini/caso-02.webp" data-full="antes-depois/caso-02.webp" alt="Antes e depois, caso 2" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-04.webp" data-full="antes-depois/caso-04.webp" alt="Antes e depois, caso 4" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-06.webp" data-full="antes-depois/caso-06.webp" alt="Antes e depois, caso 6" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-08.webp" data-full="antes-depois/caso-08.webp" alt="Antes e depois, caso 8" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-10.webp" data-full="antes-depois/caso-10.webp" alt="Antes e depois, caso 10" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-12.webp" data-full="antes-depois/caso-12.webp" alt="Antes e depois, caso 12" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-14.webp" data-full="antes-depois/caso-14.webp" alt="Antes e depois, caso 14" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-16.webp" data-full="antes-depois/caso-16.webp" alt="Antes e depois, caso 16" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-18.webp" data-full="antes-depois/caso-18.webp" alt="Antes e depois, caso 18" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-20.webp" data-full="antes-depois/caso-20.webp" alt="Antes e depois, caso 20" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-22.webp" data-full="antes-depois/caso-22.webp" alt="Antes e depois, caso 22" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-24.webp" data-full="antes-depois/caso-24.webp" alt="Antes e depois, caso 24" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-26.webp" data-full="antes-depois/caso-26.webp" alt="Antes e depois, caso 26" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-28.webp" data-full="antes-depois/caso-28.webp" alt="Antes e depois, caso 28" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-02.webp" data-full="antes-depois/caso-02.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-04.webp" data-full="antes-depois/caso-04.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-06.webp" data-full="antes-depois/caso-06.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-08.webp" data-full="antes-depois/caso-08.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-10.webp" data-full="antes-depois/caso-10.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-12.webp" data-full="antes-depois/caso-12.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-14.webp" data-full="antes-depois/caso-14.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-16.webp" data-full="antes-depois/caso-16.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-18.webp" data-full="antes-depois/caso-18.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-20.webp" data-full="antes-depois/caso-20.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-22.webp" data-full="antes-depois/caso-22.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-24.webp" data-full="antes-depois/caso-24.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-26.webp" data-full="antes-depois/caso-26.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
+        <img src="antes-depois/mini/caso-28.webp" data-full="antes-depois/caso-28.webp" alt="" aria-hidden="true" width="480" height="480" decoding="async">
       </div>
     </div>
     <p class="mq-hint"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Clique para expandir</p>
