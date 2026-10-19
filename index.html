@@ -320,6 +320,7 @@ footer.site{padding:clamp(56px,7vw,88px) 0 40px}
 .mq-row--right .mq-track{animation-name:mq-right}
 .mq-row--left .mq-track{animation-duration:95s}
 .mq-row--right .mq-track{animation-duration:89s}
+.mq-js .mq-track{animation:none!important;will-change:transform}
 @media (hover:hover) and (pointer:fine){.mq-row:hover .mq-track{animation-play-state:paused}}
 .mq-track img{width:clamp(150px,18vw,230px);height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:14px;flex:none}
 @keyframes mq-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 6px),0,0)}}
@@ -901,6 +902,34 @@ body.pp-lock{overflow:hidden}
     document.getElementById('ppClose').addEventListener('click',close);
     modal.addEventListener('click',function(e){if(e.target===modal)close();});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
+  })();
+
+  // carrosséis de antes e depois: movimento em JS (a animação só em CSS falha no Safari do iPhone em faixas muito largas)
+  (function(){
+    var rows=[].slice.call(document.querySelectorAll('.mq-row'));if(!rows.length)return;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    document.documentElement.classList.add('mq-js');
+    var fine=matchMedia('(hover:hover) and (pointer:fine)').matches,visible=true,last=null;
+    var st=rows.map(function(r){
+      var t=r.querySelector('.mq-track'),dir=r.classList.contains('mq-row--right')?1:-1,o={row:r,track:t,dir:dir,x:0,half:0,hover:false};
+      if(fine){r.addEventListener('mouseenter',function(){o.hover=true;});r.addEventListener('mouseleave',function(){o.hover=false;});}
+      return o;
+    });
+    function measure(){st.forEach(function(o){var gap=parseFloat(getComputedStyle(o.track).columnGap)||12;o.half=o.track.scrollWidth/2+gap/2;if(o.dir>0&&o.x===0)o.x=-o.half;});}
+    function speed(o){var img=o.track.querySelector('img');return (img?img.getBoundingClientRect().width:230)*0.165;}
+    function tick(now){
+      if(last===null)last=now;var dt=Math.min(.05,(now-last)/1000);last=now;
+      var paused=!visible||document.hidden||document.body.classList.contains('lb-open');
+      st.forEach(function(o){
+        if(!o.half)return;
+        if(!paused&&!o.hover){o.x+=o.dir*speed(o)*dt;if(o.x<=-o.half)o.x+=o.half;if(o.x>0)o.x-=o.half;}
+        o.track.style.transform='translate3d('+o.x.toFixed(2)+'px,0,0)';
+      });
+      requestAnimationFrame(tick);
+    }
+    measure();addEventListener('load',measure);addEventListener('resize',measure);
+    if('IntersectionObserver' in window){new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(rows[0].parentElement);}
+    requestAnimationFrame(tick);
   })();
 </script>
 </body>
