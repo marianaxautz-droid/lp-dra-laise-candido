@@ -328,7 +328,7 @@ footer.site{padding:clamp(56px,7vw,88px) 0 40px}
 .mq-cap{text-align:center;font-size:12px;color:var(--faint);margin-top:4px}
 .mq-hint{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;letter-spacing:.02em;color:var(--soft);margin-top:6px}
 @media (max-width:700px){.mq-track img{width:200px}}
-@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.mq-row{overflow-x:auto}}
+@media (prefers-reduced-motion:reduce){.mq-row--left .mq-track{animation-duration:190s}.mq-row--right .mq-track{animation-duration:178s}}
 
 /* lentes: conteúdo centralizado + carrosséis embaixo */
 #lentes .uc{grid-template-columns:1fr}
@@ -365,6 +365,9 @@ body.lb-open .mq-track{animation-play-state:paused}
 #dores .dores-foot{text-align:left;align-items:flex-start}
 /* reab: foto com a mesma altura do texto no desktop */
 @media (min-width:900px){#reab .uc{align-items:stretch}#reab .uc-media{aspect-ratio:auto;height:auto;max-height:none;min-height:100%}}
+/* reab: no celular entra a foto da equipe do Espaço Cora (horizontal, inteira) */
+#reab .uc-media picture{display:block;width:100%;height:100%}
+@media (max-width:899px){#reab .uc-media{aspect-ratio:1328/937;min-height:0}#reab .uc-media img{object-position:center}}
 
 /* depoimentos: cabeçalho centralizado + mosaico */
 #depo .depo-head{flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -448,7 +451,7 @@ body.pp-lock{overflow:hidden}
   <div class="wrap hero-grid">
     <div class="hero-l">
       <span class="kicker">Dra. Laíse Cândido · Reabilitação oral e estética dental</span>
-      <h1 class="hero-title">Natural no resultado. <em>Natural no cuidado com os seus dentes.</em></h1>
+      <h1 class="hero-title">Natural no resultado. <em>Impecável no cuidado com os seus dentes.</em></h1>
       <p class="hero-desc">Lentes de resina e de porcelana e reabilitação oral planejadas sob medida, para um sorriso harmônico, com a sua cara e preservando ao máximo os seus dentes.</p>
       <div class="hero-actions">
         <a href="#formulario" class="btn">Quero agendar minha avaliação <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
@@ -588,7 +591,7 @@ body.pp-lock{overflow:hidden}
 (function(){try{/* carrosséis de antes e depois: movimento em JS (a animação só em CSS falha no Safari do iPhone em faixas muito largas) */
   (function(){
     var rows=[].slice.call(document.querySelectorAll('.mq-row'));if(!rows.length)return;
-    if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var slow=matchMedia('(prefers-reduced-motion:reduce)').matches?.5:1; // com "Reduzir Movimento", metade da velocidade
     document.documentElement.classList.add('mq-js');
     var fine=matchMedia('(hover:hover) and (pointer:fine)').matches,visible=true,last=null;
     var st=rows.map(function(r){
@@ -597,7 +600,7 @@ body.pp-lock{overflow:hidden}
       return o;
     });
     function measure(){st.forEach(function(o){o.half=o.track.scrollWidth/2;if(o.dir>0&&o.x===0)o.x=-o.half;});}
-    function speed(o){var img=o.track.querySelector('img');return (img?img.getBoundingClientRect().width:230)*0.165;}
+    function speed(o){var img=o.track.querySelector('img');return (img?img.getBoundingClientRect().width:230)*0.165*slow;}
     function tick(now){
       if(last===null)last=now;var dt=Math.min(.05,(now-last)/1000);last=now;
       var paused=!visible||document.hidden||document.body.classList.contains('lb-open');
@@ -629,10 +632,10 @@ body.pp-lock{overflow:hidden}
       <div class="tabs" data-tabs>
         <div class="tab is-active"><button class="tab-btn" aria-expanded="true"><span class="tab-n">01</span><span class="tab-t">Estética, função e saúde juntas</span><span class="plus"></span></button><div class="tab-d"><div><p>Um sorriso bonito, que funciona bem no dia a dia e se mantém saudável.</p></div></div></div>
         <div class="tab"><button class="tab-btn" aria-expanded="false"><span class="tab-n">02</span><span class="tab-t">Seus dentes em primeiro lugar</span><span class="plus"></span></button><div class="tab-d"><div><p>Sempre que possível, o tratamento recupera os seus dentes naturais antes de substituí-los.</p></div></div></div>
-        <div class="tab"><button class="tab-btn" aria-expanded="false"><span class="tab-n">03</span><span class="tab-t">Um só planejamento, do início ao fim</span><span class="plus"></span></button><div class="tab-d"><div><p>O seu caso é acompanhado por inteiro, da avaliação à última etapa.</p></div></div></div>
+        <div class="tab"><button class="tab-btn" aria-expanded="false"><span class="tab-n">03</span><span class="tab-t">Um só planejamento, do início ao fim</span><span class="plus"></span></button><div class="tab-d"><div><p>O seu caso é acompanhado por inteiro, da avaliação à última etapa, sem precisar ir a outro lugar: toda a equipe atende aqui.</p></div></div></div>
       </div>
     </div>
-    <div class="photo uc-media" data-rv><img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.20.27.webp" alt="Dra. Laíse planejando um caso"></div>
+    <div class="photo uc-media" data-rv><picture><source media="(max-width:899px)" srcset="Fotos%20La%C3%ADse/equipe-espaco-cora.webp"><img src="Fotos Laíse/Captura de Tela 2026-10-08 às 00.20.27.webp" alt="Dra. Laíse no consultório e a equipe do Espaço Cora"></picture></div>
   </div>
 </section>
 
@@ -706,7 +709,7 @@ body.pp-lock{overflow:hidden}
   <div class="wrap local">
     <div class="local-text" data-rv>
       <span class="kicker">Espaço Cora</span>
-      <h2 class="h2">No centro de <em>Florianópolis.</em></h2>
+      <h2 class="h2">No centro geográfico de <em>Florianópolis.</em></h2>
       <p class="lede">O atendimento é no Espaço Cora, um ambiente acolhedor pensado para que o cuidado com a saúde seja também um momento de conforto, com recepção com água e café e salas com vista.</p>
       <div class="addr">
         <p class="addr-main">Ed. Somma Tower<br>R. Dr. Carlos Corrêa, 141 · Salas 601/602<span>Agronômica, Florianópolis/SC · CEP 88025-250</span></p>
